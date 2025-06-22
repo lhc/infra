@@ -37,6 +37,19 @@ Bem-vindo, este guia é divido nas seguintes seções.
 
 Antes de começar a contribuir, [crie a sua conta](http://github.com/signup) de usuário e adicione a sua chave para assinar os commits.
 
+### Realize uma bifurcação deste projeto para a sua conta do GitHub:
+
+- Acesse https://github.com/lhc/infra/fork
+- Caso queira copiar todas as ramificações desmarque a caixa `Copy the main branch only`
+- Após clonar o repositório para a sua máquina, ajustes os apontamentos remotos
+```sh
+$ git remote rename origin upstream
+$ git remote add origin git@github.com:<seu usuario github>/infra.git 
+```
+
+Nota: Caso tenha utilizado outro nome para a sua bifurcação, ajuste o nome do repositório no comando acima
+
+
 ### Código de conduta
 
 Por favor certifique-se de ler o código [Código de conduta](https://github.com/lhc/estatuto/blob/master/src/codigo_conduta.md)
@@ -138,7 +151,7 @@ Revisões contendo a etiqueta **Deve**, obrigatoriamente deve ser marcado como s
 
 Solicitações com a etiqueta **Deveria** são sugestões de melhoria e que deveria ser acatada pela pessoa que abriu o PR.
 
-** Exemplo**:
+**Exemplo**:
 
 **Nit**: Poderia ser criado um diretório para os manifestos do ArgoCD
 **Razão**: A configuração do ArgoCD seria realizada via GitOps desde o início
