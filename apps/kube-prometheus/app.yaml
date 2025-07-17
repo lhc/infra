@@ -11,41 +11,16 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://prometheus-community.github.io/helm-charts
-    chart: kube-prometheus-stack
-    targetRevision: 72.9.0
-    helm:
-      values: |
-        grafana:
-          ingress:
-            enabled: true
-            ingressClassName: traefik
-            annotations:
-              traefik.ingress.kubernetes.io/router.entrypoints: websecure
-              traefik.ingress.kubernetes.io/router.tls: "true"
-            hosts:
-              - grafana.homelab
-
-        prometheus:
-          ingress:
-            enabled: true
-            ingressClassName: traefik
-            annotations:
-              traefik.ingress.kubernetes.io/router.entrypoints: websecure
-              traefik.ingress.kubernetes.io/router.tls: "true"
-            hosts:
-              - prometheus.homelab
-
-        alertmanager:
-          ingress:
-            enabled: true
-            ingressClassName: traefik
-            annotations:
-              traefik.ingress.kubernetes.io/router.entrypoints: websecure
-              traefik.ingress.kubernetes.io/router.tls: "true"
-            hosts:
-              - alertmanager.homelab
+  sources:
+   - repoURL: https://prometheus-community.github.io/helm-charts
+     chart: kube-prometheus-stack
+     targetRevision: 72.9.0
+     helm:
+      valueFiles:
+        - $values/values/kube-prometheus/values.yaml
+   - repoURL: http://github.com/lhc/infra
+     targetRevision: feat/nodeport
+     ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring

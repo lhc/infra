@@ -23,23 +23,16 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://charts.bitnami.com/bitnami
+  sources:
+  - repoURL: https://charts.bitnami.com/bitnami
     chart: rabbitmq
     targetRevision: 15.0.0
     helm:
-      values: |
-        auth:
-          username: user
-          password: changeme
-          erlangCookie: secretcookie
-        ingress:
-          enabled: true
-          ingressClassName: traefik
-          annotations:
-            traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.tls: "true"
-          hostname: rabbitmq.homelab
+      valueFiles:
+        - $values/values/rabbitmq/values.yaml  
+  - repoURL: http://github.com/lhc/infra
+    targetRevision: feat/nodeport
+    ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: rabbitmq
