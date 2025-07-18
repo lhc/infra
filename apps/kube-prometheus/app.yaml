@@ -18,7 +18,7 @@ spec:
      helm:
       valueFiles:
         - $values/values/kube-prometheus/values.yaml
-   - repoURL: http://github.com/lhc/infra
+   - repoURL: https://github.com/lhc/infra
      targetRevision: feat/nodeport
      ref: values
   destination:
