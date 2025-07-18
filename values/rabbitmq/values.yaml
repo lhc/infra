@@ -1,0 +1,13 @@
+auth:
+  username: user
+  password: changeme
+  erlangCookie: secretcookie
+ingress:
+  enabled: true
+  ingressClassName: traefik
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+  hostname: rabbitmq.homelab
+service:
+  type: NodePort

@@ -1,0 +1,43 @@
+nodeExporter:
+  enabled: false
+  operatingSystems:
+    linux:
+      enabled: false
+    aix:
+      enabled: false
+    darwin:
+      enabled: false
+
+grafana:
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+    hosts:
+        - grafana.homelab
+
+prometheus:
+  service:
+    type: NodePort
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+    hosts:
+      - prometheus.homelab
+
+alertmanager:
+  service:
+    type: NodePort
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+    hosts:
+      - alertmanager.homelab
