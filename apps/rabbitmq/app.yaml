@@ -30,7 +30,7 @@ spec:
     helm:
       valueFiles:
         - $values/values/rabbitmq/values.yaml  
-  - repoURL: http://github.com/lhc/infra
+  - repoURL: https://github.com/lhc/infra
     targetRevision: feat/nodeport
     ref: values
   destination:
