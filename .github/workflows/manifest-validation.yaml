@@ -1,0 +1,57 @@
+name: Continuos Integration Pipeline
+
+on: [push, pull_request]
+
+jobs:
+    validate_manifests:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Check dependencies
+              env:
+                BINARY: yq_linux_amd64
+                VERSION: v4.47.1
+              run: |
+                command -v yq --version &> /dev/null || (\
+                wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY}.tar.gz -O - |\
+                tar xz && sudo mv ${BINARY} /usr/local/bin/yq
+                )
+
+            - name: Get changed manifests
+              run: |
+                echo "CHANGED_FILES=$(git diff ${{ github.ref }}..main --name-only -- ./apps)" >> $GITHUB_ENV
+          
+            - name: Validate manifests
+              run: |
+                if [ ${#CHANGED_FILES[@]} -eq 0 ]; then
+                  echo "No manifest change"
+                  exit 0
+                fi
+
+                for manifest in "${CHANGED_FILES[@]}";
+                do
+
+                  if [ -f "${manifest}" ]; then
+                    echo "::warning file=${manifest},title=NOT_FOUND::Manifest not found, skipping"
+                    continue
+                  fi
+
+                  if command -v yq &>/dev/null; then
+                    KIND=$(yq e '.kind' "${manifest}" 2>/dev/null)
+                  else
+                    KIND=$(grep -m1 '^kind' "${manifest}" | sed 's/kind:[[:space:]]*//')
+                  fi
+
+                 echo "::notice file=${manifest},title=Validate::Manifest validation kind: ${KIND}"
+                 kubeconform -schema-location default -summary -verbose ${manifest}
+
+                 if [ $? -ne 0 ]; then
+                   echo "::error file=${manifest},title=Manifest validaiton failed for kind ${KIND}"
+                   exit 1
+                 fi
+                done
+
+                
+              
