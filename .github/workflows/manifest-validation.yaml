@@ -62,4 +62,7 @@ jobs:
                    echo "::error file=${manifest},title=VALIDATION_FAILED::Manifest validation failed for kind ${KIND}"
                    exit 1
                  fi
-                done            
+                done
+            - name: Add comment to PR
+              run: |
+                echo "::notice title=Add PR comment"
