@@ -19,7 +19,7 @@ spec:
       valueFiles:
         - $values/values/kyverno/values.yaml
    - repoURL: http://192.168.15.30/homelab/lhc-infra
-     targetRevision: 
+     targetRevision:
      ref: values
   destination:
     server: https://kubernetes.default.svc
