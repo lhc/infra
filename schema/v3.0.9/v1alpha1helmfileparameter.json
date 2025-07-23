@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "title": "HelmFileParameter is a file parameter that's passed to helm template during manifest generation",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Name is the name of the Helm parameter"
+    },
+    "path": {
+      "type": "string",
+      "title": "Path is the path to the file containing the values for the Helm parameter"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

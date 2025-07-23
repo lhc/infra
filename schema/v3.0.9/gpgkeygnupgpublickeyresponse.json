@@ -1,0 +1,5 @@
+{
+  "type": "object",
+  "title": "Generic (empty) response for GPG public key CRUD requests",
+  "$schema": "http://json-schema.org/schema#"
+}

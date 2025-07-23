@@ -1,0 +1,60 @@
+{
+  "description": "Event is a report of an event somewhere in the cluster.  Events\nhave a limited retention time and triggers and messages may evolve\nwith time.  Event consumers should not rely on the timing of an event\nwith a given Reason reflecting a consistent underlying trigger, or the\ncontinued existence of events with that Reason.  Events should be\ntreated as informative, best-effort, supplemental data.",
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string",
+      "title": "What action was taken/failed regarding to the Regarding object.\n+optional"
+    },
+    "count": {
+      "type": "integer",
+      "format": "int32",
+      "title": "The number of times this event has occurred.\n+optional"
+    },
+    "eventTime": {
+      "$ref": "_definitions.json#/definitions/v1MicroTime"
+    },
+    "firstTimestamp": {
+      "$ref": "_definitions.json#/definitions/v1Time"
+    },
+    "involvedObject": {
+      "$ref": "_definitions.json#/definitions/v1ObjectReference"
+    },
+    "lastTimestamp": {
+      "$ref": "_definitions.json#/definitions/v1Time"
+    },
+    "message": {
+      "type": "string",
+      "title": "A human-readable description of the status of this operation.\nTODO: decide on maximum length.\n+optional"
+    },
+    "metadata": {
+      "$ref": "_definitions.json#/definitions/v1ObjectMeta"
+    },
+    "reason": {
+      "type": "string",
+      "title": "This should be a short, machine understandable string that gives the reason\nfor the transition into the object's current status.\nTODO: provide exact specification for format.\n+optional"
+    },
+    "related": {
+      "$ref": "_definitions.json#/definitions/v1ObjectReference"
+    },
+    "reportingComponent": {
+      "type": "string",
+      "title": "Name of the controller that emitted this Event, e.g. `kubernetes.io/kubelet`.\n+optional"
+    },
+    "reportingInstance": {
+      "type": "string",
+      "title": "ID of the controller instance, e.g. `kubelet-xyzf`.\n+optional"
+    },
+    "series": {
+      "$ref": "_definitions.json#/definitions/v1EventSeries"
+    },
+    "source": {
+      "$ref": "_definitions.json#/definitions/v1EventSource"
+    },
+    "type": {
+      "type": "string",
+      "title": "Type of this event (Normal, Warning), new types could be added in the future\n+optional"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

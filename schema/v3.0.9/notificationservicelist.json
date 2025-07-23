@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "_definitions.json#/definitions/notificationService"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

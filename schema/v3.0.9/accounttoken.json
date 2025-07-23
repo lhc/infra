@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "expiresAt": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "id": {
+      "type": "string"
+    },
+    "issuedAt": {
+      "type": "integer",
+      "format": "int64"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

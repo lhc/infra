@@ -1,0 +1,68 @@
+{
+  "type": "object",
+  "title": "ApplicationStatus contains status information for the application",
+  "properties": {
+    "conditions": {
+      "type": "array",
+      "title": "Conditions is a list of currently observed application conditions",
+      "items": {
+        "$ref": "_definitions.json#/definitions/v1alpha1ApplicationCondition"
+      }
+    },
+    "controllerNamespace": {
+      "type": "string",
+      "title": "ControllerNamespace indicates the namespace in which the application controller is located"
+    },
+    "health": {
+      "$ref": "_definitions.json#/definitions/v1alpha1HealthStatus"
+    },
+    "history": {
+      "type": "array",
+      "title": "History contains information about the application's sync history",
+      "items": {
+        "$ref": "_definitions.json#/definitions/v1alpha1RevisionHistory"
+      }
+    },
+    "observedAt": {
+      "$ref": "_definitions.json#/definitions/v1Time"
+    },
+    "operationState": {
+      "$ref": "_definitions.json#/definitions/v1alpha1OperationState"
+    },
+    "reconciledAt": {
+      "$ref": "_definitions.json#/definitions/v1Time"
+    },
+    "resourceHealthSource": {
+      "type": "string",
+      "title": "ResourceHealthSource indicates where the resource health status is stored: inline if not set or appTree"
+    },
+    "resources": {
+      "type": "array",
+      "title": "Resources is a list of Kubernetes resources managed by this application",
+      "items": {
+        "$ref": "_definitions.json#/definitions/applicationv1alpha1ResourceStatus"
+      }
+    },
+    "sourceHydrator": {
+      "$ref": "_definitions.json#/definitions/v1alpha1SourceHydratorStatus"
+    },
+    "sourceType": {
+      "type": "string",
+      "title": "SourceType specifies the type of this application"
+    },
+    "sourceTypes": {
+      "type": "array",
+      "title": "SourceTypes specifies the type of the sources included in the application",
+      "items": {
+        "type": "string"
+      }
+    },
+    "summary": {
+      "$ref": "_definitions.json#/definitions/v1alpha1ApplicationSummary"
+    },
+    "sync": {
+      "$ref": "_definitions.json#/definitions/v1alpha1SyncStatus"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

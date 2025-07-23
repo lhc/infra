@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "title": "KustomizeOptions are options for kustomize to use when building manifests",
+  "properties": {
+    "binaryPath": {
+      "type": "string",
+      "title": "BinaryPath holds optional path to kustomize binary"
+    },
+    "buildOptions": {
+      "type": "string",
+      "title": "BuildOptions is a string of build parameters to use when calling `kustomize build`"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

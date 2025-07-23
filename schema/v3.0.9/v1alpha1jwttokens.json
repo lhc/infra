@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "title": "JWTTokens represents a list of JWT tokens",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "_definitions.json#/definitions/v1alpha1JWTToken"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

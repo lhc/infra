@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "properties": {
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "tokens": {
+      "type": "array",
+      "items": {
+        "$ref": "_definitions.json#/definitions/accountToken"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

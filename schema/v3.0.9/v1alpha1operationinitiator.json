@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "title": "OperationInitiator contains information about the initiator of an operation",
+  "properties": {
+    "automated": {
+      "description": "Automated is set to true if operation was initiated automatically by the application controller.",
+      "type": "boolean"
+    },
+    "username": {
+      "type": "string",
+      "title": "Username contains the name of a user who started operation"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

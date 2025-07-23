@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "title": "RepoAppsResponse contains applications of specified repository",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "_definitions.json#/definitions/repositoryAppInfo"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

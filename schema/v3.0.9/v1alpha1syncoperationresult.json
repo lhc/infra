@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "title": "SyncOperationResult represent result of sync operation",
+  "properties": {
+    "managedNamespaceMetadata": {
+      "$ref": "_definitions.json#/definitions/v1alpha1ManagedNamespaceMetadata"
+    },
+    "resources": {
+      "type": "array",
+      "title": "Resources contains a list of sync result items for each individual resource in a sync operation",
+      "items": {
+        "$ref": "_definitions.json#/definitions/v1alpha1ResourceResult"
+      }
+    },
+    "revision": {
+      "type": "string",
+      "title": "Revision holds the revision this sync operation was performed to"
+    },
+    "revisions": {
+      "type": "array",
+      "title": "Revisions holds the revision this sync operation was performed for respective indexed source in sources field",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source": {
+      "$ref": "_definitions.json#/definitions/v1alpha1ApplicationSource"
+    },
+    "sources": {
+      "type": "array",
+      "title": "Source records the application source information of the sync, used for comparing auto-sync",
+      "items": {
+        "$ref": "_definitions.json#/definitions/v1alpha1ApplicationSource"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

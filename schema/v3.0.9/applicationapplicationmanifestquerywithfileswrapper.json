@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "chunk": {
+      "$ref": "_definitions.json#/definitions/applicationFileChunk"
+    },
+    "query": {
+      "$ref": "_definitions.json#/definitions/applicationApplicationManifestQueryWithFiles"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

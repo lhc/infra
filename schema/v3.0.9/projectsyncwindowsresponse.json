@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "windows": {
+      "type": "array",
+      "items": {
+        "$ref": "_definitions.json#/definitions/v1alpha1SyncWindow"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

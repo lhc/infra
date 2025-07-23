@@ -1,0 +1,26 @@
+{
+  "description": "PullRequestGeneratorGitea defines connection info specific to Gitea.",
+  "type": "object",
+  "properties": {
+    "api": {
+      "type": "string",
+      "title": "The Gitea API URL to talk to. Required"
+    },
+    "insecure": {
+      "description": "Allow insecure tls, for self-signed certificates; default: false.",
+      "type": "boolean"
+    },
+    "owner": {
+      "description": "Gitea org or user to scan. Required.",
+      "type": "string"
+    },
+    "repo": {
+      "description": "Gitea repo name to scan. Required.",
+      "type": "string"
+    },
+    "tokenRef": {
+      "$ref": "_definitions.json#/definitions/v1alpha1SecretRef"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

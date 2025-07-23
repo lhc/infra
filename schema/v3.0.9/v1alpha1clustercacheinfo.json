@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "title": "ClusterCacheInfo contains information about the cluster cache",
+  "properties": {
+    "apisCount": {
+      "type": "integer",
+      "format": "int64",
+      "title": "APIsCount holds number of observed Kubernetes API count"
+    },
+    "lastCacheSyncTime": {
+      "$ref": "_definitions.json#/definitions/v1Time"
+    },
+    "resourcesCount": {
+      "type": "integer",
+      "format": "int64",
+      "title": "ResourcesCount holds number of observed Kubernetes resources"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "title": "OrphanedResourceKey is a reference to a resource to be ignored from",
+  "properties": {
+    "group": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

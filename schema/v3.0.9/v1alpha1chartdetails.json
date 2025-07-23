@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "title": "ChartDetails contains helm chart metadata for a specific version",
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "home": {
+      "type": "string",
+      "title": "The URL of this projects home page, e.g. \"http://example.com\""
+    },
+    "maintainers": {
+      "type": "array",
+      "title": "List of maintainer details, name and email, e.g. [\"John Doe <john_doe@my-company.com>\"]",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

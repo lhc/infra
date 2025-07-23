@@ -1,0 +1,22 @@
+{
+  "description": "SCMProviderGeneratorBitbucket defines connection info specific to Bitbucket Cloud (API version 2).",
+  "type": "object",
+  "properties": {
+    "allBranches": {
+      "description": "Scan all branches instead of just the main branch.",
+      "type": "boolean"
+    },
+    "appPasswordRef": {
+      "$ref": "_definitions.json#/definitions/v1alpha1SecretRef"
+    },
+    "owner": {
+      "description": "Bitbucket workspace to scan. Required.",
+      "type": "string"
+    },
+    "user": {
+      "type": "string",
+      "title": "Bitbucket user to use when authenticating.  Should have a \"member\" role to be able to read all repositories and branches.  Required"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

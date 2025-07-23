@@ -1,0 +1,38 @@
+{
+  "description": "ResourceIgnoreDifferences contains resource filter and list of json paths which should be ignored during comparison with live state.",
+  "type": "object",
+  "properties": {
+    "group": {
+      "type": "string"
+    },
+    "jqPathExpressions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "jsonPointers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "kind": {
+      "type": "string"
+    },
+    "managedFieldsManagers": {
+      "type": "array",
+      "title": "ManagedFieldsManagers is a list of trusted managers. Fields mutated by those managers will take precedence over the\ndesired state defined in the SCM and won't be displayed in diffs",
+      "items": {
+        "type": "string"
+      }
+    },
+    "name": {
+      "type": "string"
+    },
+    "namespace": {
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

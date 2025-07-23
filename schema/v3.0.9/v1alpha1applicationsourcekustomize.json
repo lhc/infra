@@ -1,0 +1,100 @@
+{
+  "type": "object",
+  "title": "ApplicationSourceKustomize holds options specific to an Application source specific to Kustomize",
+  "properties": {
+    "apiVersions": {
+      "description": "APIVersions specifies the Kubernetes resource API versions to pass to Helm when templating manifests. By default,\nArgo CD uses the API versions of the target cluster. The format is [group/]version/kind.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "commonAnnotations": {
+      "type": "object",
+      "title": "CommonAnnotations is a list of additional annotations to add to rendered manifests",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "commonAnnotationsEnvsubst": {
+      "type": "boolean",
+      "title": "CommonAnnotationsEnvsubst specifies whether to apply env variables substitution for annotation values"
+    },
+    "commonLabels": {
+      "type": "object",
+      "title": "CommonLabels is a list of additional labels to add to rendered manifests",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "components": {
+      "type": "array",
+      "title": "Components specifies a list of kustomize components to add to the kustomization before building",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forceCommonAnnotations": {
+      "type": "boolean",
+      "title": "ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps"
+    },
+    "forceCommonLabels": {
+      "type": "boolean",
+      "title": "ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps"
+    },
+    "ignoreMissingComponents": {
+      "type": "boolean",
+      "title": "IgnoreMissingComponents prevents kustomize from failing when components do not exist locally by not appending them to kustomization file"
+    },
+    "images": {
+      "type": "array",
+      "title": "Images is a list of Kustomize image override specifications",
+      "items": {
+        "type": "string"
+      }
+    },
+    "kubeVersion": {
+      "description": "KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD\nuses the Kubernetes version of the target cluster.",
+      "type": "string"
+    },
+    "labelIncludeTemplates": {
+      "type": "boolean",
+      "title": "LabelIncludeTemplates specifies whether to apply common labels to resource templates or not"
+    },
+    "labelWithoutSelector": {
+      "type": "boolean",
+      "title": "LabelWithoutSelector specifies whether to apply common labels to resource selectors or not"
+    },
+    "namePrefix": {
+      "type": "string",
+      "title": "NamePrefix is a prefix appended to resources for Kustomize apps"
+    },
+    "nameSuffix": {
+      "type": "string",
+      "title": "NameSuffix is a suffix appended to resources for Kustomize apps"
+    },
+    "namespace": {
+      "type": "string",
+      "title": "Namespace sets the namespace that Kustomize adds to all resources"
+    },
+    "patches": {
+      "type": "array",
+      "title": "Patches is a list of Kustomize patches",
+      "items": {
+        "$ref": "_definitions.json#/definitions/v1alpha1KustomizePatch"
+      }
+    },
+    "replicas": {
+      "type": "array",
+      "title": "Replicas is a list of Kustomize Replicas override specifications",
+      "items": {
+        "$ref": "_definitions.json#/definitions/v1alpha1KustomizeReplica"
+      }
+    },
+    "version": {
+      "type": "string",
+      "title": "Version controls which version of Kustomize to use for rendering manifests"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

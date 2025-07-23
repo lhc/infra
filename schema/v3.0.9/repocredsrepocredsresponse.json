@@ -1,0 +1,5 @@
+{
+  "type": "object",
+  "title": "RepoCredsResponse is a response to most repository credentials requests",
+  "$schema": "http://json-schema.org/schema#"
+}

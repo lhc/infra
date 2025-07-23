@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "title": "ConnectionState contains information about remote resource connection state, currently used for clusters and repositories",
+  "properties": {
+    "attemptedAt": {
+      "$ref": "_definitions.json#/definitions/v1Time"
+    },
+    "message": {
+      "type": "string",
+      "title": "Message contains human readable information about the connection status"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status contains the current status indicator for the connection"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}
