@@ -1,0 +1,29 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kyverno
+  namespace: argocd
+spec:
+  project: security
+  sources:
+   - repoURL: https://kyverno.github.io/kyverno/
+     chart: kyverno
+     targetRevision: v1.14.4
+     helm:
+      valueFiles:
+        - $values/values/kyverno/values.yaml
+   - repoURL: http://192.168.15.30/homelab/lhc-infra
+     targetRevision: 
+     ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kyverno
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+      - Replace=true
