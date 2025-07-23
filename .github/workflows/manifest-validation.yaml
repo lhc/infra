@@ -33,12 +33,17 @@ jobs:
 
             - name: Get changed manifests
               run: |
-                echo "CHANGED_FILES=$(git diff main..${{ github.ref }} --name-only -- ./apps)" >> $GITHUB_ENV
+                echo "CHANGED_FILES=$(git diff main..HEAD --name-only -- ./apps)" >> $GITHUB_ENV
+
+                if [ $? -ne 0 ]; then
+                  echo "::error title=GET_CHANGES_FAILED:: Failed to get changes for revision ${{ github.ref }}"
+                  exit 1
+                fi
           
             - name: Validate manifests
               run: |
                 if [ ${#CHANGED_FILES[@]} -eq 0 ]; then
-                  echo "No manifest change"
+                  echo "::notica title=NO_CHANGES::No ArgoCD manifest changes detected"
                   exit 0
                 fi
 
@@ -50,11 +55,11 @@ jobs:
                     continue
                   fi
 
-                 echo "::notice file=${manifest},title=Validate::Manifest validation kind: ${KIND}"
-                 kubeconform -schema-location default -schema-location '${ARGOCD_SCHEMA}/v3.0.9/{{ .ResourceAPIVersion}}{{ .ResourceKind }},json' -summary -verbose ${manifest}
+                 echo "::notice file=${manifest},title=Validate::Manifest validation ${maifest}"
+                 kubeconform -schema-location default -schema-location '${ARGOCD_SCHEMA}/{{ .ResourceAPIVersion }}{{ .ResourceKind }},json' -summary -verbose ${manifest}
 
                  if [ $? -ne 0 ]; then
-                   echo "::error file=${manifest},title=Manifest validation failed for kind ${KIND}"
+                   echo "::error file=${manifest},title=VALIDATION_FAILED::Manifest validation failed for kind ${KIND}"
                    exit 1
                  fi
                 done            
