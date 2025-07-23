@@ -1,5 +1,0 @@
-{
-  "type": "object",
-  "title": "DirectoryAppSpec contains directory",
-  "$schema": "http://json-schema.org/schema#"
-}

@@ -43,7 +43,7 @@ jobs:
             - name: Validate manifests
               run: |
                 if [ ${#CHANGED_FILES[@]} -eq 0 ]; then
-                  echo "::notica title=NO_CHANGES::No ArgoCD manifest changes detected"
+                  echo "::notice title=NO_CHANGES::No ArgoCD manifest changes detected"
                   exit 0
                 fi
 
@@ -56,7 +56,7 @@ jobs:
                   fi
 
                  echo "::notice file=${manifest},title=Validate::Manifest validation ${maifest}"
-                 kubeconform -schema-location default -schema-location '${ARGOCD_SCHEMA}/{{ .ResourceAPIVersion }}{{ .ResourceKind }},json' -summary -verbose ${manifest}
+                 kubeconform -schema-location default -schema-location '${ARGOCD_SCHEMA}/{{ .ResourceAPIVersion }}{{ .ResourceKind }}.json' -summary -verbose ${manifest}
 
                  if [ $? -ne 0 ]; then
                    echo "::error file=${manifest},title=VALIDATION_FAILED::Manifest validation failed for kind ${KIND}"
