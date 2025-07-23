@@ -1,0 +1,47 @@
+{
+  "description": "NodeSystemInfo is a set of ids/uuids to uniquely identify the node.",
+  "type": "object",
+  "properties": {
+    "architecture": {
+      "type": "string",
+      "title": "The Architecture reported by the node"
+    },
+    "bootID": {
+      "description": "Boot ID reported by the node.",
+      "type": "string"
+    },
+    "containerRuntimeVersion": {
+      "description": "ContainerRuntime Version reported by the node through runtime remote API (e.g. containerd://1.4.2).",
+      "type": "string"
+    },
+    "kernelVersion": {
+      "description": "Kernel Version reported by the node from 'uname -r' (e.g. 3.16.0-0.bpo.4-amd64).",
+      "type": "string"
+    },
+    "kubeProxyVersion": {
+      "description": "Deprecated: KubeProxy Version reported by the node.",
+      "type": "string"
+    },
+    "kubeletVersion": {
+      "description": "Kubelet Version reported by the node.",
+      "type": "string"
+    },
+    "machineID": {
+      "type": "string",
+      "title": "MachineID reported by the node. For unique machine identification\nin the cluster this field is preferred. Learn more from man(5)\nmachine-id: http://man7.org/linux/man-pages/man5/machine-id.5.html"
+    },
+    "operatingSystem": {
+      "type": "string",
+      "title": "The Operating System reported by the node"
+    },
+    "osImage": {
+      "description": "OS Image reported by the node from /etc/os-release (e.g. Debian GNU/Linux 7 (wheezy)).",
+      "type": "string"
+    },
+    "systemUUID": {
+      "type": "string",
+      "title": "SystemUUID reported by the node. For unique machine identification\nMachineID is preferred. This field is specific to Red Hat hosts\nhttps://access.redhat.com/documentation/en-us/red_hat_subscription_management/1/html/rhsm/uuid"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "title": "ListGenerator include items info",
+  "properties": {
+    "elements": {
+      "type": "array",
+      "title": "+kubebuilder:validation:Optional",
+      "items": {
+        "$ref": "_definitions.json#/definitions/v1JSON"
+      }
+    },
+    "elementsYaml": {
+      "type": "string"
+    },
+    "template": {
+      "$ref": "_definitions.json#/definitions/v1alpha1ApplicationSetTemplate"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

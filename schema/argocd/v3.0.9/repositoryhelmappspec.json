@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "title": "HelmAppSpec contains helm app name  in source repo",
+  "properties": {
+    "fileParameters": {
+      "type": "array",
+      "title": "helm file parameters",
+      "items": {
+        "$ref": "_definitions.json#/definitions/v1alpha1HelmFileParameter"
+      }
+    },
+    "name": {
+      "type": "string"
+    },
+    "parameters": {
+      "type": "array",
+      "title": "the output of `helm inspect values`",
+      "items": {
+        "$ref": "_definitions.json#/definitions/v1alpha1HelmParameter"
+      }
+    },
+    "valueFiles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "values": {
+      "type": "string",
+      "title": "the contents of values.yaml"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

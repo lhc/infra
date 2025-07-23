@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "title": "SyncStatus contains information about the currently observed live and desired states of an application",
+  "properties": {
+    "comparedTo": {
+      "$ref": "_definitions.json#/definitions/v1alpha1ComparedTo"
+    },
+    "revision": {
+      "type": "string",
+      "title": "Revision contains information about the revision the comparison has been performed to"
+    },
+    "revisions": {
+      "type": "array",
+      "title": "Revisions contains information about the revisions of multiple sources the comparison has been performed to",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "title": "Status is the sync state of the comparison"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

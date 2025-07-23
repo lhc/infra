@@ -1,0 +1,35 @@
+{
+  "description": "ClusterConfig is the configuration attributes. This structure is subset of the go-client\nrest.Config with annotations added for marshalling.",
+  "type": "object",
+  "properties": {
+    "awsAuthConfig": {
+      "$ref": "_definitions.json#/definitions/v1alpha1AWSAuthConfig"
+    },
+    "bearerToken": {
+      "description": "Server requires Bearer authentication. This client will not attempt to use\nrefresh tokens for an OAuth2 flow.\nTODO: demonstrate an OAuth2 compatible client.",
+      "type": "string"
+    },
+    "disableCompression": {
+      "description": "DisableCompression bypasses automatic GZip compression requests to the server.",
+      "type": "boolean"
+    },
+    "execProviderConfig": {
+      "$ref": "_definitions.json#/definitions/v1alpha1ExecProviderConfig"
+    },
+    "password": {
+      "type": "string"
+    },
+    "proxyUrl": {
+      "type": "string",
+      "title": "ProxyURL is the URL to the proxy to be used for all requests send to the server"
+    },
+    "tlsClientConfig": {
+      "$ref": "_definitions.json#/definitions/v1alpha1TLSClientConfig"
+    },
+    "username": {
+      "type": "string",
+      "title": "Server requires Basic authentication"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

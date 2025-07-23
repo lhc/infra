@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "gvk": {
+      "$ref": "_definitions.json#/definitions/v1alpha1KustomizeGvk"
+    },
+    "name": {
+      "type": "string"
+    },
+    "namespace": {
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

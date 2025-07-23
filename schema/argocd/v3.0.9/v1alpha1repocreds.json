@@ -1,0 +1,81 @@
+{
+  "type": "object",
+  "title": "RepoCreds holds the definition for repository credentials",
+  "properties": {
+    "bearerToken": {
+      "type": "string",
+      "title": "BearerToken contains the bearer token used for Git BitBucket Data Center auth at the repo server"
+    },
+    "enableOCI": {
+      "type": "boolean",
+      "title": "EnableOCI specifies whether helm-oci support should be enabled for this repo"
+    },
+    "forceHttpBasicAuth": {
+      "type": "boolean",
+      "title": "ForceHttpBasicAuth specifies whether Argo CD should attempt to force basic auth for HTTP connections"
+    },
+    "gcpServiceAccountKey": {
+      "type": "string",
+      "title": "GCPServiceAccountKey specifies the service account key in JSON format to be used for getting credentials to Google Cloud Source repos"
+    },
+    "githubAppEnterpriseBaseUrl": {
+      "type": "string",
+      "title": "GithubAppEnterpriseBaseURL specifies the GitHub API URL for GitHub app authentication. If empty will default to https://api.github.com"
+    },
+    "githubAppID": {
+      "type": "integer",
+      "format": "int64",
+      "title": "GithubAppId specifies the Github App ID of the app used to access the repo for GitHub app authentication"
+    },
+    "githubAppInstallationID": {
+      "type": "integer",
+      "format": "int64",
+      "title": "GithubAppInstallationId specifies the ID of the installed GitHub App for GitHub app authentication"
+    },
+    "githubAppPrivateKey": {
+      "type": "string",
+      "title": "GithubAppPrivateKey specifies the private key PEM data for authentication via GitHub app"
+    },
+    "noProxy": {
+      "type": "string",
+      "title": "NoProxy specifies a list of targets where the proxy isn't used, applies only in cases where the proxy is applied"
+    },
+    "password": {
+      "type": "string",
+      "title": "Password for authenticating at the repo server"
+    },
+    "proxy": {
+      "type": "string",
+      "title": "Proxy specifies the HTTP/HTTPS proxy used to access repos at the repo server"
+    },
+    "sshPrivateKey": {
+      "type": "string",
+      "title": "SSHPrivateKey contains the private key data for authenticating at the repo server using SSH (only Git repos)"
+    },
+    "tlsClientCertData": {
+      "type": "string",
+      "title": "TLSClientCertData specifies the TLS client cert data for authenticating at the repo server"
+    },
+    "tlsClientCertKey": {
+      "type": "string",
+      "title": "TLSClientCertKey specifies the TLS client cert key for authenticating at the repo server"
+    },
+    "type": {
+      "description": "Type specifies the type of the repoCreds. Can be either \"git\" or \"helm. \"git\" is assumed if empty or absent.",
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "title": "URL is the URL to which these credentials match"
+    },
+    "useAzureWorkloadIdentity": {
+      "type": "boolean",
+      "title": "UseAzureWorkloadIdentity specifies whether to use Azure Workload Identity for authentication"
+    },
+    "username": {
+      "type": "string",
+      "title": "Username for authenticating at the repo server"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

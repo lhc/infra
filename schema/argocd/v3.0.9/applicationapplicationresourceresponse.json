@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "properties": {
+    "manifest": {
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

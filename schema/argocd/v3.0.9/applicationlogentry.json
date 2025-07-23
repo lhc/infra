@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": "string"
+    },
+    "last": {
+      "type": "boolean"
+    },
+    "podName": {
+      "type": "string"
+    },
+    "timeStamp": {
+      "$ref": "_definitions.json#/definitions/v1Time"
+    },
+    "timeStampStr": {
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

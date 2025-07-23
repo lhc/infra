@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "options": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "patch": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "target": {
+      "$ref": "_definitions.json#/definitions/v1alpha1KustomizeSelector"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

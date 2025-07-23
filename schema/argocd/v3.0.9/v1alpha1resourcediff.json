@@ -1,0 +1,55 @@
+{
+  "description": "ResourceDiff holds the diff between a live and target resource object in Argo CD.\nIt is used to compare the desired state (from Git/Helm) with the actual state in the cluster.",
+  "type": "object",
+  "properties": {
+    "diff": {
+      "description": "Diff contains the JSON patch representing the difference between the live and target resource.\nDeprecated: Use NormalizedLiveState and PredictedLiveState instead to compute differences.",
+      "type": "string"
+    },
+    "group": {
+      "description": "Group represents the API group of the resource (e.g., \"apps\" for Deployments).",
+      "type": "string"
+    },
+    "hook": {
+      "description": "Hook indicates whether this resource is a hook resource (e.g., pre-sync or post-sync hooks).",
+      "type": "boolean"
+    },
+    "kind": {
+      "description": "Kind represents the Kubernetes resource kind (e.g., \"Deployment\", \"Service\").",
+      "type": "string"
+    },
+    "liveState": {
+      "description": "LiveState contains the JSON-serialized resource manifest of the resource currently running in the cluster.",
+      "type": "string"
+    },
+    "modified": {
+      "description": "Modified indicates whether the live resource has changes compared to the target resource.",
+      "type": "boolean"
+    },
+    "name": {
+      "description": "Name is the name of the resource.",
+      "type": "string"
+    },
+    "namespace": {
+      "description": "Namespace specifies the namespace where the resource exists.",
+      "type": "string"
+    },
+    "normalizedLiveState": {
+      "description": "NormalizedLiveState contains the JSON-serialized live resource state after applying normalizations.\nNormalizations may include ignoring irrelevant fields like timestamps or defaults applied by Kubernetes.",
+      "type": "string"
+    },
+    "predictedLiveState": {
+      "description": "PredictedLiveState contains the JSON-serialized resource state that Argo CD predicts based on the\ncombination of the normalized live state and the desired target state.",
+      "type": "string"
+    },
+    "resourceVersion": {
+      "description": "ResourceVersion is the Kubernetes resource version, which helps in tracking changes.",
+      "type": "string"
+    },
+    "targetState": {
+      "description": "TargetState contains the JSON-serialized resource manifest as defined in the Git/Helm repository.",
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

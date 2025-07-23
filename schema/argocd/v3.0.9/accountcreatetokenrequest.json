@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "expiresIn": {
+      "type": "integer",
+      "format": "int64",
+      "title": "expiresIn represents a duration in seconds"
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

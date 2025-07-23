@@ -1,0 +1,13 @@
+{
+  "description": "ApplicationSetStrategy configures how generated Applications are updated in sequence.",
+  "type": "object",
+  "properties": {
+    "rollingSync": {
+      "$ref": "_definitions.json#/definitions/v1alpha1ApplicationSetRolloutStrategy"
+    },
+    "type": {
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

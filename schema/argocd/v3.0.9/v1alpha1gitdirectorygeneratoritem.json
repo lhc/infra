@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "exclude": {
+      "type": "boolean"
+    },
+    "path": {
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

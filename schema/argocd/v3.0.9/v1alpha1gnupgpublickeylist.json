@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "title": "GnuPGPublicKeyList is a collection of GnuPGPublicKey objects",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "_definitions.json#/definitions/v1alpha1GnuPGPublicKey"
+      }
+    },
+    "metadata": {
+      "$ref": "_definitions.json#/definitions/v1ListMeta"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "title": "ApplicationSetGenerateResponse is a response for applicationset generate request",
+  "properties": {
+    "applications": {
+      "type": "array",
+      "items": {
+        "$ref": "_definitions.json#/definitions/v1alpha1Application"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "chunk": {
+      "type": "string",
+      "format": "byte"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

@@ -1,0 +1,26 @@
+{
+  "description": "SCMProviderGeneratorGithub defines connection info specific to GitHub.",
+  "type": "object",
+  "properties": {
+    "allBranches": {
+      "description": "Scan all branches instead of just the default branch.",
+      "type": "boolean"
+    },
+    "api": {
+      "description": "The GitHub API URL to talk to. If blank, use https://api.github.com/.",
+      "type": "string"
+    },
+    "appSecretName": {
+      "description": "AppSecretName is a reference to a GitHub App repo-creds secret.",
+      "type": "string"
+    },
+    "organization": {
+      "description": "GitHub org to scan. Required.",
+      "type": "string"
+    },
+    "tokenRef": {
+      "$ref": "_definitions.json#/definitions/v1alpha1SecretRef"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

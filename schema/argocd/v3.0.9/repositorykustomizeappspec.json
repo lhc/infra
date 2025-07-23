@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "title": "KustomizeAppSpec contains kustomize images",
+  "properties": {
+    "images": {
+      "description": "images is a list of available images.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}
