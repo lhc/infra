@@ -39,7 +39,7 @@ jobs:
 
             - name: Get changed manifests
               run: |
-                echo "CHANGED_FILES=$(git diff --name-only main..HEAD -- ./apps)" >> $GITHUB_ENV
+                echo "CHANGED_FILES=$(git diff --name-only origin/HEAD..${{ github.ref }} -- ./apps)" >> $GITHUB_ENV
 
                 if [ $? -ne 0 ]; then
                   echo "::error title=GET_CHANGES_FAILED:: Failed to get changes for revision ${{ github.ref }}"
