@@ -17,6 +17,9 @@ jobs:
               with:
                 fetch-depth: 0
 
+            - name: Setup git references
+              run: git remote set-head origin --auto
+                
             - name: Check dependencies
               run: |
                 command -v yq &>/dev/null || (\
