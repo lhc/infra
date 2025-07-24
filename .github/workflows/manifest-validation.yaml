@@ -59,7 +59,7 @@ jobs:
                   fi
 
                  echo "::notice file=${manifest},title=Validate::Manifest validation"
-                 kubeconform -summary -verbose -schema-location default -schema-location './${{ env.ARGOCD_SCHEMA }}/{{ .ResourceAPIVersion }}{{ .ResourceKind }}.json' ${manifest}
+                 kubeconform -summary -verbose -schema-location default -schema-location './${{ env.ARGOCD_SCHEMA }}/{{ .ResourceAPIVersion }}{{ .ResourceKind }}.json' ${manifest} | tee test-results/
 
                  if [ $? -ne 0 ]; then
                    echo "::error file=${manifest},title=VALIDATION_FAILED::Manifest validation failed for kind ${KIND}"
