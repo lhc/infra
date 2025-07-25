@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "title": "PortStatus represents the error condition of a service port",
+  "properties": {
+    "error": {
+      "type": "string",
+      "title": "Error is to record the problem with the service port\nThe format of the error shall comply with the following rules:\n- built-in error values shall be specified in this file and those shall use\n  CamelCase names\n- cloud provider specific error values must have names that comply with the\n  format foo.example.com/CamelCase.\n---\nThe regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)\n+optional\n+kubebuilder:validation:Required\n+kubebuilder:validation:Pattern=`^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$`\n+kubebuilder:validation:MaxLength=316"
+    },
+    "port": {
+      "type": "integer",
+      "format": "int32",
+      "title": "Port is the port number of the service port of which status is recorded here"
+    },
+    "protocol": {
+      "type": "string",
+      "title": "Protocol is the protocol of the service port of which status is recorded here\nThe supported values are: \"TCP\", \"UDP\", \"SCTP\""
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

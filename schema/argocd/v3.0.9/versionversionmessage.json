@@ -1,0 +1,46 @@
+{
+  "type": "object",
+  "title": "VersionMessage represents version of the Argo CD API server",
+  "properties": {
+    "BuildDate": {
+      "type": "string"
+    },
+    "Compiler": {
+      "type": "string"
+    },
+    "ExtraBuildInfo": {
+      "type": "string"
+    },
+    "GitCommit": {
+      "type": "string"
+    },
+    "GitTag": {
+      "type": "string"
+    },
+    "GitTreeState": {
+      "type": "string"
+    },
+    "GoVersion": {
+      "type": "string"
+    },
+    "HelmVersion": {
+      "type": "string"
+    },
+    "JsonnetVersion": {
+      "type": "string"
+    },
+    "KubectlVersion": {
+      "type": "string"
+    },
+    "KustomizeVersion": {
+      "type": "string"
+    },
+    "Platform": {
+      "type": "string"
+    },
+    "Version": {
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

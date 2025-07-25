@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "title": "HydrateOperation contains information about the most recent hydrate operation",
+  "properties": {
+    "drySHA": {
+      "type": "string",
+      "title": "DrySHA holds the resolved revision (sha) of the dry source as of the most recent reconciliation"
+    },
+    "finishedAt": {
+      "$ref": "_definitions.json#/definitions/v1Time"
+    },
+    "hydratedSHA": {
+      "type": "string",
+      "title": "HydratedSHA holds the resolved revision (sha) of the hydrated source as of the most recent reconciliation"
+    },
+    "message": {
+      "type": "string",
+      "title": "Message contains a message describing the current status of the hydrate operation"
+    },
+    "phase": {
+      "type": "string",
+      "title": "Phase indicates the status of the hydrate operation"
+    },
+    "sourceHydrator": {
+      "$ref": "_definitions.json#/definitions/v1alpha1SourceHydrator"
+    },
+    "startedAt": {
+      "$ref": "_definitions.json#/definitions/v1Time"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

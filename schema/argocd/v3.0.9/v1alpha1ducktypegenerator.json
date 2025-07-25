@@ -1,0 +1,31 @@
+{
+  "description": "DuckType defines a generator to match against clusters registered with ArgoCD.",
+  "type": "object",
+  "properties": {
+    "configMapRef": {
+      "type": "string",
+      "title": "ConfigMapRef is a ConfigMap with the duck type definitions needed to retrieve the data\n             this includes apiVersion(group/version), kind, matchKey and validation settings\nName is the resource name of the kind, group and version, defined in the ConfigMapRef\nRequeueAfterSeconds is how long before the duckType will be rechecked for a change"
+    },
+    "labelSelector": {
+      "$ref": "_definitions.json#/definitions/v1LabelSelector"
+    },
+    "name": {
+      "type": "string"
+    },
+    "requeueAfterSeconds": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "template": {
+      "$ref": "_definitions.json#/definitions/v1alpha1ApplicationSetTemplate"
+    },
+    "values": {
+      "type": "object",
+      "title": "Values contains key/value pairs which are passed directly as parameters to the template",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

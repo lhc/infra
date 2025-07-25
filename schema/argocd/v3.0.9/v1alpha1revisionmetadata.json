@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "title": "RevisionMetadata contains metadata for a specific revision in a Git repository",
+  "properties": {
+    "author": {
+      "type": "string",
+      "title": "who authored this revision,\ntypically their name and email, e.g. \"John Doe <john_doe@my-company.com>\",\nbut might not match this example"
+    },
+    "date": {
+      "$ref": "_definitions.json#/definitions/v1Time"
+    },
+    "message": {
+      "description": "Message contains the message associated with the revision, most likely the commit message.",
+      "type": "string"
+    },
+    "signatureInfo": {
+      "description": "SignatureInfo contains a hint on the signer if the revision was signed with GPG, and signature verification is enabled.",
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "title": "Tags specifies any tags currently attached to the revision\nFloating tags can move from one revision to another",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

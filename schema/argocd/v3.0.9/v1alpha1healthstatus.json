@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "title": "HealthStatus contains information about the currently observed health state of an application or resource",
+  "properties": {
+    "lastTransitionTime": {
+      "$ref": "_definitions.json#/definitions/v1Time"
+    },
+    "message": {
+      "type": "string",
+      "title": "Message is a human-readable informational message describing the health status"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status holds the status code of the application or resource"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

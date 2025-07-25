@@ -1,0 +1,108 @@
+{
+  "type": "object",
+  "title": "Repository is a repository holding application configurations",
+  "properties": {
+    "bearerToken": {
+      "type": "string",
+      "title": "BearerToken contains the bearer token used for Git BitBucket Data Center auth at the repo server"
+    },
+    "connectionState": {
+      "$ref": "_definitions.json#/definitions/v1alpha1ConnectionState"
+    },
+    "enableLfs": {
+      "description": "EnableLFS specifies whether git-lfs support should be enabled for this repo. Only valid for Git repositories.",
+      "type": "boolean"
+    },
+    "enableOCI": {
+      "type": "boolean",
+      "title": "EnableOCI specifies whether helm-oci support should be enabled for this repo"
+    },
+    "forceHttpBasicAuth": {
+      "type": "boolean",
+      "title": "ForceHttpBasicAuth specifies whether Argo CD should attempt to force basic auth for HTTP connections"
+    },
+    "gcpServiceAccountKey": {
+      "type": "string",
+      "title": "GCPServiceAccountKey specifies the service account key in JSON format to be used for getting credentials to Google Cloud Source repos"
+    },
+    "githubAppEnterpriseBaseUrl": {
+      "type": "string",
+      "title": "GithubAppEnterpriseBaseURL specifies the base URL of GitHub Enterprise installation. If empty will default to https://api.github.com"
+    },
+    "githubAppID": {
+      "type": "integer",
+      "format": "int64",
+      "title": "GithubAppId specifies the ID of the GitHub app used to access the repo"
+    },
+    "githubAppInstallationID": {
+      "type": "integer",
+      "format": "int64",
+      "title": "GithubAppInstallationId specifies the installation ID of the GitHub App used to access the repo"
+    },
+    "githubAppPrivateKey": {
+      "type": "string",
+      "title": "Github App Private Key PEM data"
+    },
+    "inheritedCreds": {
+      "type": "boolean",
+      "title": "Whether credentials were inherited from a credential set"
+    },
+    "insecure": {
+      "type": "boolean",
+      "title": "Insecure specifies whether the connection to the repository ignores any errors when verifying TLS certificates or SSH host keys"
+    },
+    "insecureIgnoreHostKey": {
+      "type": "boolean",
+      "title": "InsecureIgnoreHostKey should not be used anymore, Insecure is favoured\nUsed only for Git repos"
+    },
+    "name": {
+      "type": "string",
+      "title": "Name specifies a name to be used for this repo. Only used with Helm repos"
+    },
+    "noProxy": {
+      "type": "string",
+      "title": "NoProxy specifies a list of targets where the proxy isn't used, applies only in cases where the proxy is applied"
+    },
+    "password": {
+      "type": "string",
+      "title": "Password contains the password or PAT used for authenticating at the remote repository"
+    },
+    "project": {
+      "type": "string",
+      "title": "Reference between project and repository that allows it to be automatically added as an item inside SourceRepos project entity"
+    },
+    "proxy": {
+      "type": "string",
+      "title": "Proxy specifies the HTTP/HTTPS proxy used to access the repo"
+    },
+    "repo": {
+      "type": "string",
+      "title": "Repo contains the URL to the remote repository"
+    },
+    "sshPrivateKey": {
+      "description": "SSHPrivateKey contains the PEM data for authenticating at the repo server. Only used with Git repos.",
+      "type": "string"
+    },
+    "tlsClientCertData": {
+      "type": "string",
+      "title": "TLSClientCertData contains a certificate in PEM format for authenticating at the repo server"
+    },
+    "tlsClientCertKey": {
+      "type": "string",
+      "title": "TLSClientCertKey contains a private key in PEM format for authenticating at the repo server"
+    },
+    "type": {
+      "description": "Type specifies the type of the repo. Can be either \"git\" or \"helm. \"git\" is assumed if empty or absent.",
+      "type": "string"
+    },
+    "useAzureWorkloadIdentity": {
+      "type": "boolean",
+      "title": "UseAzureWorkloadIdentity specifies whether to use Azure Workload Identity for authentication"
+    },
+    "username": {
+      "type": "string",
+      "title": "Username contains the user name used for authenticating at the remote repository"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

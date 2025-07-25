@@ -1,0 +1,32 @@
+{
+  "description": "PullRequestGeneratorBitbucketServer defines connection info specific to BitbucketServer.",
+  "type": "object",
+  "properties": {
+    "api": {
+      "description": "The Bitbucket REST API URL to talk to e.g. https://bitbucket.org/rest Required.",
+      "type": "string"
+    },
+    "basicAuth": {
+      "$ref": "_definitions.json#/definitions/v1alpha1BasicAuthBitbucketServer"
+    },
+    "bearerToken": {
+      "$ref": "_definitions.json#/definitions/v1alpha1BearerTokenBitbucket"
+    },
+    "caRef": {
+      "$ref": "_definitions.json#/definitions/v1alpha1ConfigMapKeyRef"
+    },
+    "insecure": {
+      "type": "boolean",
+      "title": "Allow self-signed TLS / Certificates; default: false"
+    },
+    "project": {
+      "description": "Project to scan. Required.",
+      "type": "string"
+    },
+    "repo": {
+      "description": "Repo name to scan. Required.",
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

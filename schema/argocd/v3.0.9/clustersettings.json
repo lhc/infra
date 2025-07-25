@@ -1,0 +1,106 @@
+{
+  "type": "object",
+  "properties": {
+    "additionalUrls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "appLabelKey": {
+      "type": "string"
+    },
+    "appsInAnyNamespaceEnabled": {
+      "type": "boolean"
+    },
+    "configManagementPlugins": {
+      "description": "Deprecated: use sidecar plugins instead.",
+      "type": "array",
+      "items": {
+        "$ref": "_definitions.json#/definitions/v1alpha1ConfigManagementPlugin"
+      }
+    },
+    "controllerNamespace": {
+      "type": "string"
+    },
+    "dexConfig": {
+      "$ref": "_definitions.json#/definitions/clusterDexConfig"
+    },
+    "execEnabled": {
+      "type": "boolean"
+    },
+    "googleAnalytics": {
+      "$ref": "_definitions.json#/definitions/clusterGoogleAnalyticsConfig"
+    },
+    "help": {
+      "$ref": "_definitions.json#/definitions/clusterHelp"
+    },
+    "hydratorEnabled": {
+      "type": "boolean"
+    },
+    "impersonationEnabled": {
+      "type": "boolean"
+    },
+    "installationID": {
+      "type": "string"
+    },
+    "kustomizeOptions": {
+      "$ref": "_definitions.json#/definitions/v1alpha1KustomizeOptions"
+    },
+    "kustomizeVersions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "oidcConfig": {
+      "$ref": "_definitions.json#/definitions/clusterOIDCConfig"
+    },
+    "passwordPattern": {
+      "type": "string"
+    },
+    "plugins": {
+      "type": "array",
+      "items": {
+        "$ref": "_definitions.json#/definitions/clusterPlugin"
+      }
+    },
+    "resourceOverrides": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "_definitions.json#/definitions/v1alpha1ResourceOverride"
+      }
+    },
+    "statusBadgeEnabled": {
+      "type": "boolean"
+    },
+    "statusBadgeRootUrl": {
+      "type": "string"
+    },
+    "trackingMethod": {
+      "type": "string"
+    },
+    "uiBannerContent": {
+      "type": "string"
+    },
+    "uiBannerPermanent": {
+      "type": "boolean"
+    },
+    "uiBannerPosition": {
+      "type": "string"
+    },
+    "uiBannerURL": {
+      "type": "string"
+    },
+    "uiCssURL": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "userLoginsDisabled": {
+      "type": "boolean"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

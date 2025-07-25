@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "title": "RepositoryCertificateList is a collection of RepositoryCertificates",
+  "properties": {
+    "items": {
+      "type": "array",
+      "title": "List of certificates to be processed",
+      "items": {
+        "$ref": "_definitions.json#/definitions/v1alpha1RepositoryCertificate"
+      }
+    },
+    "metadata": {
+      "$ref": "_definitions.json#/definitions/v1ListMeta"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

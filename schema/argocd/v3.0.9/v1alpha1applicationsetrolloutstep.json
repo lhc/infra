@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "matchExpressions": {
+      "type": "array",
+      "items": {
+        "$ref": "_definitions.json#/definitions/v1alpha1ApplicationMatchExpression"
+      }
+    },
+    "maxUpdate": {
+      "$ref": "_definitions.json#/definitions/intstrIntOrString"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

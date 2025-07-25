@@ -1,0 +1,25 @@
+{
+  "description": "PullRequestGeneratorBitbucket defines connection info specific to Bitbucket.",
+  "type": "object",
+  "properties": {
+    "api": {
+      "description": "The Bitbucket REST API URL to talk to. If blank, uses https://api.bitbucket.org/2.0.",
+      "type": "string"
+    },
+    "basicAuth": {
+      "$ref": "_definitions.json#/definitions/v1alpha1BasicAuthBitbucketServer"
+    },
+    "bearerToken": {
+      "$ref": "_definitions.json#/definitions/v1alpha1BearerTokenBitbucketCloud"
+    },
+    "owner": {
+      "description": "Workspace to scan. Required.",
+      "type": "string"
+    },
+    "repo": {
+      "description": "Repo name to scan. Required.",
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

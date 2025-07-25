@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "title": "The current user's userInfo info",
+  "properties": {
+    "groups": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "iss": {
+      "type": "string"
+    },
+    "loggedIn": {
+      "type": "boolean"
+    },
+    "username": {
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

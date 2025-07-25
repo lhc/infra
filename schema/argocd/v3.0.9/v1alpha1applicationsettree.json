@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "title": "ApplicationSetTree holds nodes which belongs to the application\nUsed to build a tree of an ApplicationSet and its children",
+  "properties": {
+    "nodes": {
+      "type": "array",
+      "title": "Nodes contains list of nodes which are directly managed by the applicationset",
+      "items": {
+        "$ref": "_definitions.json#/definitions/v1alpha1ResourceNode"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

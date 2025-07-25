@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "annotationSelector": {
+      "type": "string"
+    },
+    "labelSelector": {
+      "type": "string"
+    },
+    "resId": {
+      "$ref": "_definitions.json#/definitions/v1alpha1KustomizeResId"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

@@ -1,0 +1,71 @@
+name: Continuos Integration Pipeline
+
+on: [push, pull_request]
+
+env:
+  YQ_BINARY: yq_linux_amd64
+  YQ_VERSION: v4.47.1
+  KUBECONFORM_VERSION: v0.7.0
+  ARGOCD_SCHEMA: schema/argocd/v3.0.9
+
+jobs:
+    validate_manifests:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
+
+            - name: Setup git references
+              run: git remote set-head origin --auto
+                
+            - name: Check dependencies
+              run: |
+                command -v yq &>/dev/null || (\
+                  echo "::notice title=Install yq"
+                  wget https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/${YQ_BINARY}.tar.gz -O - |\
+                  tar xz && sudo mv ${BINARY} /usr/local/bin/yq
+                )
+
+                command -v kubeconform &>/dev/null || (\
+                  echo "::notice title=Install Kubeconform"
+                  go install github.com/yannh/kubeconform/cmd/kubeconform@${KUBECONFORM_VERSION}           
+                )
+
+                echo "::notice file=kubeconform,title=Set Kubeconform to path"
+
+                echo "PATH=${PATH}:${HOME}/go/bin" >> $GITHUB_ENV
+
+            - name: Get changed manifests
+              run: |
+                echo "CHANGED_FILES=$(git diff --name-only origin/HEAD..${{ github.ref }} -- ./apps)" >> $GITHUB_ENV
+
+                if [ $? -ne 0 ]; then
+                  echo "::error title=GET_CHANGES_FAILED:: Failed to get changes for revision ${{ github.ref }}"
+                  exit 1
+                fi
+          
+            - name: Validate manifests
+              run: |
+                if [ ${#CHANGED_FILES[@]} -eq 0 ]; then
+                  echo "::notice title=NO_CHANGES::No ArgoCD manifest changes detected"
+                  exit 0
+                fi
+
+                for manifest in "${CHANGED_FILES[@]}";
+                do
+
+                  if [ ! -f "${manifest}" ]; then
+                    echo "::warning file=${manifest},title=NOT_FOUND::Manifest not found, skipping"
+                    continue
+                  fi
+
+                 echo "::notice file=${manifest},title=Validate::Manifest validation"
+                 kubeconform -summary -verbose -schema-location default -schema-location './${{ env.ARGOCD_SCHEMA }}/{{ .ResourceAPIVersion }}{{ .ResourceKind }}.json' ${manifest}
+
+                 if [ $? -ne 0 ]; then
+                   echo "::error file=${manifest},title=VALIDATION_FAILED::Manifest validation failed for kind ${KIND}"
+                   exit 1
+                 fi
+                done

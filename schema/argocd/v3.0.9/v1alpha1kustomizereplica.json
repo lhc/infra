@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "count": {
+      "$ref": "_definitions.json#/definitions/intstrIntOrString"
+    },
+    "name": {
+      "type": "string",
+      "title": "Name of Deployment or StatefulSet"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

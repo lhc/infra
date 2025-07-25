@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "title": "ResourceRef includes fields which uniquely identify a resource",
+  "properties": {
+    "group": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "namespace": {
+      "type": "string"
+    },
+    "uid": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

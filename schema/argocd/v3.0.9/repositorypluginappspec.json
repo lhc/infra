@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "title": "PluginAppSpec contains details about a plugin-type Application",
+  "properties": {
+    "parametersAnnouncement": {
+      "type": "array",
+      "items": {
+        "$ref": "_definitions.json#/definitions/repositoryParameterAnnouncement"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "connectors": {
+      "type": "array",
+      "items": {
+        "$ref": "_definitions.json#/definitions/clusterConnector"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

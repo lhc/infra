@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "title": "ResourceOverride holds configuration to customize resource diffing and health assessment",
+  "properties": {
+    "actions": {
+      "description": "Actions defines the set of actions that can be performed on the resource, as a Lua script.",
+      "type": "string"
+    },
+    "healthLua": {
+      "description": "HealthLua contains a Lua script that defines custom health checks for the resource.",
+      "type": "string"
+    },
+    "ignoreDifferences": {
+      "$ref": "_definitions.json#/definitions/v1alpha1OverrideIgnoreDiff"
+    },
+    "ignoreResourceUpdates": {
+      "$ref": "_definitions.json#/definitions/v1alpha1OverrideIgnoreDiff"
+    },
+    "knownTypeFields": {
+      "description": "KnownTypeFields lists fields for which unit conversions should be applied.",
+      "type": "array",
+      "items": {
+        "$ref": "_definitions.json#/definitions/v1alpha1KnownTypeField"
+      }
+    },
+    "useOpenLibs": {
+      "description": "UseOpenLibs indicates whether to use open-source libraries for the resource.",
+      "type": "boolean"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

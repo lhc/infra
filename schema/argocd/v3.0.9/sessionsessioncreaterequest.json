@@ -1,0 +1,16 @@
+{
+  "description": "SessionCreateRequest is for logging in.",
+  "type": "object",
+  "properties": {
+    "password": {
+      "type": "string"
+    },
+    "token": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

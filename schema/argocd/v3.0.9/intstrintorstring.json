@@ -1,0 +1,19 @@
+{
+  "description": "+protobuf=true\n+protobuf.options.(gogoproto.goproto_stringer)=false\n+k8s:openapi-gen=true",
+  "type": "object",
+  "title": "IntOrString is a type that can hold an int32 or a string.  When used in\nJSON or YAML marshalling and unmarshalling, it produces or consumes the\ninner type.  This allows you to have, for example, a JSON field that can\naccept a name or number.\nTODO: Rename to Int32OrString",
+  "properties": {
+    "intVal": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "strVal": {
+      "type": "string"
+    },
+    "type": {
+      "type": "integer",
+      "format": "int64"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "appNamespace": {
+      "type": "string"
+    },
+    "dryRun": {
+      "type": "boolean"
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "name": {
+      "type": "string"
+    },
+    "project": {
+      "type": "string"
+    },
+    "prune": {
+      "type": "boolean"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

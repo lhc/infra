@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "$ref": "_definitions.json#/definitions/protobufAny"
+      }
+    },
+    "grpc_code": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "http_code": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "http_status": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

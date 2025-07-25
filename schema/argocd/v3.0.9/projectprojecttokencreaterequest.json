@@ -1,0 +1,24 @@
+{
+  "description": "ProjectTokenCreateRequest defines project token creation parameters.",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "expiresIn": {
+      "type": "integer",
+      "format": "int64",
+      "title": "expiresIn represents a duration in seconds"
+    },
+    "id": {
+      "type": "string"
+    },
+    "project": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

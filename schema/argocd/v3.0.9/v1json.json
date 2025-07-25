@@ -1,0 +1,11 @@
+{
+  "description": "JSON represents any valid JSON value.\nThese types are supported: bool, int64, float64, string, []interface{}, map[string]interface{} and nil.",
+  "type": "object",
+  "properties": {
+    "raw": {
+      "type": "string",
+      "format": "byte"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

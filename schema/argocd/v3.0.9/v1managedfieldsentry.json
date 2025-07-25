@@ -1,0 +1,33 @@
+{
+  "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource\nthat the fieldset applies to.",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the version of this resource that this field set\napplies to. The format is \"group/version\" just like the top-level\nAPIVersion field. It is necessary to track the version of a field\nset because it cannot be automatically converted.",
+      "type": "string"
+    },
+    "fieldsType": {
+      "type": "string",
+      "title": "FieldsType is the discriminator for the different fields format and version.\nThere is currently only one possible value: \"FieldsV1\""
+    },
+    "fieldsV1": {
+      "$ref": "_definitions.json#/definitions/v1FieldsV1"
+    },
+    "manager": {
+      "description": "Manager is an identifier of the workflow managing these fields.",
+      "type": "string"
+    },
+    "operation": {
+      "description": "Operation is the type of operation which lead to this ManagedFieldsEntry being created.\nThe only valid values for this field are 'Apply' and 'Update'.",
+      "type": "string"
+    },
+    "subresource": {
+      "description": "Subresource is the name of the subresource used to update that object, or\nempty string if the object was updated through the main resource. The\nvalue of this field is used to distinguish between managers, even if they\nshare the same name. For example, a status update will be distinct from a\nregular update using the same manager name.\nNote that the APIVersion field is not related to the Subresource field and\nit always corresponds to the version of the main resource.",
+      "type": "string"
+    },
+    "time": {
+      "$ref": "_definitions.json#/definitions/v1Time"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}
