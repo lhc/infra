@@ -76,18 +76,6 @@ jobs:
                 name: manifest-validation-result
                 path: test-results/TEST-*.txt
                 retention-days: 7
-    comment_on_pr:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Get manifest validation report
-          uses: actions/download-artifact@v4
-          with:
-            name: manifest-validation-result
 
-        # - name: Comment on PR
-        #   if: success() || failure()
-        #   uses: git@100.87.222.25:homelab/actions.git/comment-on-pr@v0.1.0
-        #   with:
-        #     content: test-results/TEST-manifest-validation.txt
         
 
