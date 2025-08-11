@@ -20,7 +20,7 @@ jobs:
             - name: Get fork Head
               run: |
                 git remote add fork ${{ github.event.pull_request.head.repo }}
-                git fetch fork  ${{ github.event.pull_request.head.ref }}
+                git fetch fork ${{ github.event.pull_request.head.ref }}
 
             - name: Switch to branch ${{ github.ref }}
               run: |
