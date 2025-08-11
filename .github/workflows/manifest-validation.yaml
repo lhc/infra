@@ -1,6 +1,6 @@
 name: Continuos Integration Pipeline
 
-on: [push, pull_request]
+on: [pull_request]
 
 env:
   YQ_BINARY: yq_linux_amd64
@@ -19,8 +19,8 @@ jobs:
 
             - name: Get fork Head
               run: |
-                git remote add fork ${{ github.event.pull_request.head.ref }}
-                git fetch fork ${{ github.event.pull_request.head.sha }}
+                git remote add fork ${{ github.event.pull_request.head.repo }}
+                git fetch fork  ${{ github.event.pull_request.head.ref }}
 
             - name: Switch to branch ${{ github.ref }}
               run: |
