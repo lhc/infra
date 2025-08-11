@@ -17,13 +17,18 @@ jobs:
               with:
                 fetch-depth: 0
 
-            - name: SWitch to branch ${{ github.ref }}
+            - name: Get fork Head
               run: |
-                git switch -c ${{ github.ref}}
+                git remote add fork ${{ github.event.pull_request.head.ref }}
+                git fetch fork ${{ github.event.pull_request.head.sha }}
+
+            - name: Switch to branch ${{ github.ref }}
+              run: |
+                git switch -c ${{ github.ref }}
 
             - name: Setup git references
               run: git remote set-head origin --auto
-                
+         
             - name: Check dependencies
               run: |
                 command -v yq &>/dev/null || (\
@@ -43,10 +48,10 @@ jobs:
 
             - name: Get changed manifests
               run: |
-                echo "CHANGED_FILES=$(git diff --name-only origin/HEAD..${{ github.ref }} -- ./apps)" >> $GITHUB_ENV
+                echo "CHANGED_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} -- ./apps)" >> $GITHUB_ENV
 
                 if [ $? -ne 0 ]; then
-                  echo "::error title=GET_CHANGES_FAILED:: Failed to get changes for revision ${{ github.ref }}"
+                  echo "::error title=GET_CHANGES_FAILED:: Failed to get changes for revision ${{ github.ref.name }}"
                   exit 1
                 fi
           
