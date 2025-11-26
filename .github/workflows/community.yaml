@@ -25,7 +25,6 @@ jobs:
         id: check-contributor
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.WORKFLOW_TOKEN }}
           script: |
             const { owner, repo } = context.repo;
             const author = context.payload.sender.login;
