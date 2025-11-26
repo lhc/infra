@@ -1,7 +1,6 @@
 name: Community Management
 
 on:
-  # Trigger when new user joins (via issues, PRs, discussions)
   issues:
     types: [opened]
   pull_request:
@@ -63,21 +62,21 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const welcomeMessage = `👋 Welcome to the project, @${{ steps.check-contributor.outputs.author }}! 
+            const welcomeMessage = `👋 Bem vindo ao projeto do homelab, @${{ steps.check-contributor.outputs.author }}! 
 
-            Thank you for opening your first issue. We appreciate your contribution to the community! 
+            Obrigado por abrir a sua primeira issue. Sua contribuição para a comunidade é sempre bem-vinda! 
 
-            **What happens next?**
-            - Our maintainers will review your issue
-            - If you're reporting a bug, please ensure you've included reproduction steps
-            - If you're requesting a feature, we'll discuss the implementation approach
+            **Próximos passos?**
+            - Os mantenedores do projeto irão revisar a sua issue
+            - Caso esteja reportando um problema, não esqueça de incluir os passos para reproduzir o problema
+            - Mas caso esteja adicionando uma requisição de funcionalidade, discutiremos como abordar a implamentação
 
-            **Getting involved:**
-            - Check out our [Contributing Guide](../../blob/main/README.md)
-            - Join our discussions for questions and ideas
-            - Look for issues labeled \`good first issue\` if you'd like to contribute code
+            **Envolva-se com a comunidade:**
+            - Leia o guia [Guia de Contribuição](../../blob/main/CONTRIBUTING.md)
+            - Participe das nossas discussões com idéias e perguntas
+            - Procure por issue com a label \`good first issue\` caso você deseje contribuir com código
 
-            Thanks again for being part of our community! 🚀`;
+            Novamente agradecemos por fazer parte da nossa comunidade! 🚀`;
 
             await github.rest.issues.createComment({
               owner: context.repo.owner,
@@ -91,26 +90,26 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const welcomeMessage = `🎉 Thank you for your first pull request, @${{ steps.check-contributor.outputs.author }}!
+            const welcomeMessage = `🎉 Obrigado por enviar o seu primeiro pull request, @${{ steps.check-contributor.outputs.author }}!
 
-            We're excited to have you contributing to the project! 
+            Estamos muito contente em ter você contribuindo com o projeto! 
 
-            **Review process:**
-            - Our maintainers will review your changes
-            - We may request some modifications or ask questions
-            - Once approved, we'll merge your contribution
+            **Processo de revisão:**
+            - OS mantenedores irão revisar as suas atualizações
+            - Podemos requisitar alterações ou fazer algumas perguntas em relação sua mudanças
+            - Uma vez aprovada, a sua contribuição será in corporada no ramo principal (main branch)
 
-            **Tips for success:**
-            - Make sure your PR has a clear description of what it does
-            - Include tests if applicable
-            - Keep your changes focused and atomic
+            **Algumas dicas:**
+            - Tenha certeza que o seu PR descreve com clareza das suas atualizações
+            - Inclua testes se aplicavél
+            - Mantenha as suas atualizações focadas e atômicas
 
-            **While you wait:**
-            - Check out other open issues you might want to work on
-            - Join our discussions for questions and ideas
-            - Review our [Contributing Guide](../../blob/main/README.md)
+            **Enquando espera pela revisão:**
+            - Verifique se existe outra issue aberta na qual gostaria de trabalhar
+            - Envie perguntas e idéias relativos ao projeto
+            - Revise nosso [Guia de Contribuição](../../blob/main/CONTRIBUTING.md)
 
-            Thank you for making our project better! 🙌`;
+            Obrigado pelas sua contribuição para melhorar o projeto! 🙌`;
 
             await github.rest.issues.createComment({
               owner: context.repo.owner,
