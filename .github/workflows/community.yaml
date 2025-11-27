@@ -144,13 +144,13 @@ jobs:
             
             // Type-based labels
             if (isIssue) {
-              if (content.includes('bug') || content.includes('error') || content.includes('broken')) {
+              if (content.includes('bug') || content.includes('erro') || content.includes('quebra*')) {
                 labels.push('bug');
-              } else if (content.includes('feature') || content.includes('enhancement') || content.includes('improvement')) {
+              } else if (content.includes('funcionalidade') || content.includes('melhoria') || content.includes('improvement')) {
                 labels.push('enhancement');
-              } else if (content.includes('question') || content.includes('help') || content.includes('how to')) {
+              } else if (content.includes('pergunta') || content.includes('ajuda') || content.includes('how to')) {
                 labels.push('question');
-              } else if (content.includes('documentation') || content.includes('docs') || content.includes('readme')) {
+              } else if (content.includes('documentation') || content.includes('doc*') || content.includes('readme')) {
                 labels.push('documentation');
               }
             }
