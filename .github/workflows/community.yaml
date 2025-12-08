@@ -129,8 +129,9 @@ jobs:
     steps:
       - name: Auto-tag issues and PRs
         uses: actions/github-script@v7
-        with:
+        env:
           GITHUB-TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+        with:
           script: |
             const { owner, repo } = context.repo;
             const isIssue = context.eventName === 'issues';
