@@ -1,5 +1,5 @@
-applicationsets @marcpires @andreyev
-*.tf @marcpires @EstevesDouglas @andreyev
-.github/ @marcpires @EstevesDouglas @andreyev
-Makefile @andeyev @EstevesDouglas @marcpires
-applicationset.yaml @andeyev @marcpires @EstevesDouglas
+applicationsets @marcpires
+*.tf @marcpires @EstevesDouglas 
+.github/ @marcpires @EstevesDouglas
+Makefile @EstevesDouglas @marcpires
+applicationset.yaml @marcpires @EstevesDouglas
