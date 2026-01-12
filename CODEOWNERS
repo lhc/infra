@@ -1,5 +1,3 @@
 applicationsets @marcpires
-*.tf @marcpires @EstevesDouglas 
 .github/ @marcpires @EstevesDouglas
-Makefile @EstevesDouglas @marcpires
 applicationset.yaml @marcpires @EstevesDouglas
