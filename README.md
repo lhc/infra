@@ -21,13 +21,7 @@ De que coisas você precisa para instalar o software e como instalá-lo?
 
 Para realizar a instalação do seu ambiente, execute os seguintes passos (substituindo os valores das variáveis *REPO* e *BRANCH*) e indique que apps deseja instalar:
 
-```
-export REPO=SEU_USERNAME/NOME_DO_REPO
-export BRANCH=SUA_BRANCH
-export APPS='kube-prometheus'
-```
 
-E execute a instalação:
 ```
 export INSTALL_URL=https://raw.githubusercontent.com/${REPO}/refs/heads/${BRANCH}/install.sh
 curl -s $INSTALL_URL | sudo env INSTALL_URL="$INSTALL_URL" BRANCH="$BRANCH" REPO="$REPO" APPS="$APPS" bash
