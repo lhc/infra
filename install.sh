@@ -1,16 +1,20 @@
 #!/usr/bin/env bash
 # Aborta a execução em caso algum comando termine com o status diferente de zero
-set -e
+set -xe
+
+. _helper.sh
 
 # Executar como root
 if [ "$(id -u)" -ne 0 ]; then
     ( echo "Execute com sudo ou como root" ; exit 1 )
 fi
 
-[[ ${REPO} ]] || ( echo "REPO de instalação não informado" ; exit 1 )
-[[ ${BRANCH} ]] || export BRANCH=main
-[[ ${INSTALL_URL} ]] || ( echo "URL de instalação não informada" ; exit 1 )
-[[ ${ARGOCD_VERSION} ]] || ( ARGOCD_VERSION="7.8.23" )
+[[ ${REPO} ]] || export REPO="marcpires/infra-lhc"
+[[ ${BRANCH} ]] || export BRANCH="feat/35-install-defaults"
+[[ ${INSTALL_URL} ]] || export INSTALL_URL="https://raw.githubusercontent.com/${REPO}/refs/heads/${BRANCH}/install.sh"
+[[ ${ARGOCD_VERSION} ]] || export ARGOCD_VERSION="9.3.4"
+[[ ${RABBITMQ_OPERATOR_VERSION} ]] || RABBITMQ_OPERATOR_VERSION="v2.19.0" 
+[[ ${APPS} ]] || export APPS=("kube-prometheus" "rabbitmq")
 
 # Identifica o sistema operacional em uso
 case "$(uname -s)" in
@@ -19,6 +23,7 @@ case "$(uname -s)" in
 esac
 
 # Identifica a arquitetura em uso
+# TODO: Adicionar outras arquiteturas
 ARCH_RAW=$(uname -m)
 case "$ARCH_RAW" in
     x86_64) ARCH="amd64" ;;
@@ -36,6 +41,7 @@ esac
 command -v kubectl &> /dev/null || \
 ( if [ "$OS" == "linux" ]; then
   curl -sLO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${ARCH}/kubectl"
+  verify_kubectl
   chmod +x kubectl
   mv kubectl /usr/local/bin/
   command -v kubectl &> /dev/null || ( echo "Kubectl não pode ser instalado" ; exit 1 )
@@ -89,28 +95,49 @@ fi )
 
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 helm repo add argo https://argoproj.github.io/argo-helm
-helm upgrade --install argocd argo/argo-cd --version ${ARGOCD_VERSION} -n argocd --create-namespace --set server.extraArgs={--insecure}
+helm repo update 
+helm upgrade --install argocd argo/argo-cd --version "${ARGOCD_VERSION}" -n argocd --create-namespace --set server.extraArgs=\{--insecure\}
 
-kubectl apply -f https://raw.githubusercontent.com/${REPO}/refs/heads/${BRANCH}/apps/argo/ingress.yaml
+kubectl apply -f "https://raw.githubusercontent.com/${REPO}/refs/heads/${BRANCH}/apps/argo/ingress.yaml"
 
 if [[ ${APPS} ]]; then
-	for APP in $APPS; do
-		kubectl apply -f https://raw.githubusercontent.com/${REPO}/refs/heads/${BRANCH}/apps/${APP}/app.yaml -n argocd
+	for APP in "${APPS[@]}"; do
+		if [[ "${APP}" == "rabbitmq" ]]; then 
+			install_rabbitmq_operator
+		fi
+		kubectl apply -f "https://raw.githubusercontent.com/${REPO}/refs/heads/${BRANCH}/apps/${APP}/app.yaml"
 	done
 fi
 
+kubectl get deployments --all-namespaces -o custom-columns="NAMESPACE:.metadata.namespace,NAME:.metadata.name" | tail -n +2 | while read namespace name; do
+	echo "Verficando estatus dos deployments para $name $namespace"
+	kubectl rollout status deployment/"${name}" -n "${namespace}"
+done
+
+# Realizando o patch dos serviços
+
+echo "Realizando o ajuste dos serviços para acesso via ip e porta"
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
 kubectl patch svc kube-prometheus-grafana -n monitoring -p '{"spec": {"type": "NodePort"}}'
+kubectl patch svc rabbitmq -n rabbitmq -p '{"spec": {"type": "NodePort"}}'
 
-echo "\nK3S Node IP\n"
+echo -e "\nK3S Node IP\n"
 kubectl get node -o wide | awk -v OFS='\t\t' '{print $1, $6}'
 
-echo "Portas dos serviços\n" 
-export ALERT_MANAGER_PORT=$(kubectl get svc/kube-prometheus-kube-prome-alertmanager -o jsonpath="{range .spec.ports[*]} {.name} {.nodePort}" -n monitoring)
-export ARGOCD_PORT=$(kubectl get svc/argocd-server -o jsonpath="{.spec.ports[1].name} {.spec.ports[1].nodePort}" -n argocd)
-export GRAFANA_PORT=$(kubectl get svc/kube-prometheus-grafana -o jsonpath="{.spec.ports[0].name} {.spec.ports[0].nodePort}" -n monitoring)
-export PROMETHEUS_PORT=$(kubectl get svc/kube-prometheus-kube-prome-prometheus -o jsonpath="{range .spec.ports[*]} {.name} {.nodePort}" -n monitoring)
-export RABBITMQ_PORT=$(kubectl get svc/rabbitmq -o jsonpath="{range .spec.ports[*]} {.name} {.nodePort}" -n rabbitmq)
-echo "ArgoCD: ${ARGOCD_PORT}\nGrafana: ${GRAFANA_PORT}\nPrometheus: ${PROMETHEUS_PORT}\nAlert Manager: ${ALERT_MANAGER_PORT}\nRabbitMQ: ${RABBITMQ_PORT}\n"
+# Declara as variáveis para os serviços.
+# https://www.shellcheck.net/wiki/SC2155
+echo -e "Portas dos serviços\n" 
+ALERT_MANAGER_PORT=$(kubectl get svc/kube-prometheus-kube-prome-alertmanager -o jsonpath="{range .spec.ports[*]} {.name} {.nodePort}" -n monitoring)
+export ALERT_MANAGER_PORT
+ARGOCD_PORT=$(kubectl get svc/argocd-server -o jsonpath="{.spec.ports[1].name} {.spec.ports[1].nodePort}" -n argocd)
+export ARGOCD_PORT
+GRAFANA_PORT=$(kubectl get svc/kube-prometheus-grafana -o jsonpath="{.spec.ports[0].name} {.spec.ports[0].nodePort}" -n monitoring)
+export GRAFANA_PORT
+PROMETHEUS_PORT=$(kubectl get svc/kube-prometheus-kube-prome-prometheus -o jsonpath="{range .spec.ports[*]} {.name} {.nodePort}" -n monitoring)
+export PROMETHEUS_PORT
+RABBITMQ_PORT=$(kubectl get svc/rabbitmq -o jsonpath="{range .spec.ports[*]} {.name} {.nodePort}" -n rabbitmq)
+export RABBITMQ_PORT
+
+echo -e "ArgoCD: ${ARGOCD_PORT}\nGrafana: ${GRAFANA_PORT}\nPrometheus: ${PROMETHEUS_PORT}\nAlert Manager: ${ALERT_MANAGER_PORT}\nRabbitMQ: ${RABBITMQ_PORT}\n"
 
 echo "Utilize o ip do k3s e as portas para acessar os serviços do homelab"

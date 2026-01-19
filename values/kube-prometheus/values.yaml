@@ -9,6 +9,8 @@ nodeExporter:
       enabled: false
 
 grafana:
+  service:
+    type: NodePort
   ingress:
     enabled: true
     ingressClassName: traefik

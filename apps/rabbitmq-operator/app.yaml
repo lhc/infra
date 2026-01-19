@@ -2,22 +2,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: rabbitmq
+  name: rabbitmq-operator
   namespace: argocd
 spec:
   project: default
   sources:
   - repoURL: https://github.com/marcpires/infra-lhc.git
     targetRevision: feat/35-install-defaults
-    path: apps/rabbitmq/manifest
+    path: apps/rabbitmq-operator/manifest
   destination:
     server: https://kubernetes.default.svc
-    namespace: rabbitmq
+    namespace: rabbitmq-system
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - ServerSideApply=true
-      - CreateNamespace=true
 
