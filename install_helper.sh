@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
  detect_arch() {
     ARCH_RAW=$(uname -m)
     case "$ARCH_RAW" in
@@ -64,8 +62,8 @@ install_k3s() {
 setup_kubeconfig() {
     DIRS_=$(ls -d /home/*)
     if [[ -d ${DIRS_} ]]; then
-      for DIR in "${DIRS[@]}"; do
-          echo "Copiando arquivo para o kubectl" 
+        echo "Copiando arquivo para o kubectl" 
+      for DIR in "${DIRS_[@]}"; do
           sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/k3s-config.yaml
       done
    fi   
