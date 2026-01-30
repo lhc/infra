@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
  detect_arch() {
     ARCH_RAW=$(uname -m)
     case "$ARCH_RAW" in
@@ -61,8 +63,9 @@ install_k3s() {
 
 setup_kubeconfig() {
     DIRS_=$(ls -d /home/*)
-    if [[ ${DIRS_} ]]; then
+    if [[ -d ${DIRS_} ]]; then
       for DIR in "${DIRS[@]}"; do
+          echo "Copiando arquivo para o kubectl" 
           sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/k3s-config.yaml
       done
    fi   
@@ -127,10 +130,7 @@ deploy_argocd() {
 install_apps() {
     if [[ ${APPS} ]]; then
         for APP in "${APPS[@]}"; do
-            if [[ "${APP}" == "rabbitmq" ]]; then
-                install_rabbitmq_operator
-            fi
-            kubectl apply -f "https://raw.githubusercontent.com/${REPO}/refs/heads/${BRANCH}/apps/${APP}/app.yaml"
+          kubectl apply -f "https://raw.githubusercontent.com/${REPO}/refs/heads/${BRANCH}/apps/${APP}/app.yaml"
         done
     fi
 }
