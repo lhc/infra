@@ -1,6 +1,6 @@
  #!/usr/bin/env bash
 # Aborta a execução em caso algum comando termine com o status diferente de zero
-set -xe
+set -e
 
 # Executar como root
 if [ "$(id -u)" -ne 0 ]; then
