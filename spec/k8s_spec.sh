@@ -21,7 +21,7 @@ Describe "Cluster install:" cluster:default
     End
   End
 
- Describe "helm:" cluster:deps:helm cluster:deps:helm
+ Describe "helm:" cluster:deps:helm
    It "should be installed successfuly"
      When call install_helm
        Path helm='/usr/local/bin/helm'
@@ -61,7 +61,7 @@ Describe "Cluster install:" cluster:default
     End
  End
  
- Describe "ArgoCD:" cluster:argocd:repo
+ Describe "ArgoCD:" cluster:argocd:repo:add
   It "should have added argocd helm repository"
      When call add_argocd_helm_repo
      The status should be success
@@ -69,7 +69,7 @@ Describe "Cluster install:" cluster:default
   End
  End
 
- Describe "ArgoCD Helm update repo:" cluster:argocd:repo
+ Describe "ArgoCD Helm update repo:" cluster:argocd:repo:update
    It "should have update argocd helm repository"
      When call update_argocd_helm_repo
       The status should be success
@@ -102,6 +102,8 @@ Describe "Cluster install:" cluster:default
      The output should include "${APPS} Synced Healthy"
    End
  End
+
+  Describe "Stacks "
 
   Describe "Rabbitmq:" cluster:rabbitmq-operator:stacks
     It "should have deployed the operator successfully"
