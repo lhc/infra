@@ -12,7 +12,7 @@ fi
 [[ ${INSTALL_URL} ]] || export INSTALL_URL="https://raw.githubusercontent.com/${REPO}/refs/heads/${BRANCH}/install.sh"
 [[ ${ARGOCD_VERSION} ]] || export ARGOCD_VERSION="9.3.4"
 [[ ${RABBITMQ_OPERATOR_VERSION} ]] || RABBITMQ_OPERATOR_VERSION="v2.19.0" 
-[[ ${APPS} ]] || export APPS=("kube-prometheus" "rabbitmq")
+[[ ${APPS} ]] || export APPS=("kube-prometheus" "rabbitmq-operator" "rabbitmq")
 
 # Identifica o sistema operacional em uso
 case "$(uname -s)" in
@@ -102,13 +102,7 @@ if [[ ${APPS} ]]; then
 	done
 fi
 
-kubectl get deployments --all-namespaces -o custom-columns="NAMESPACE:.metadata.namespace,NAME:.metadata.name" | tail -n +2 | while read namespace name; do
-	echo "Verficando estatus dos deployments para $name $namespace"
-	kubectl rollout status deployment/"${name}" -n "${namespace}"
-done
-
-# Realizando o patch dos serviços
-
+# Realizando o patch dos serviçosj
 echo "Realizando o ajuste dos serviços para acesso via ip e porta"
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
 kubectl patch svc kube-prometheus-grafana -n monitoring -p '{"spec": {"type": "NodePort"}}'
