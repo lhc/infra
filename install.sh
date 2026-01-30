@@ -105,7 +105,6 @@ fi
 # Realizando o patch dos serviçosj
 echo "Realizando o ajuste dos serviços para acesso via ip e porta"
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
-kubectl patch svc kube-prometheus-grafana -n monitoring -p '{"spec": {"type": "NodePort"}}'
 kubectl patch svc rabbitmq -n rabbitmq -p '{"spec": {"type": "NodePort"}}'
 
 echo -e "\nK3S Node IP\n"
