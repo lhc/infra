@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+ #!/usr/bin/env bash
 # Aborta a execução em caso algum comando termine com o status diferente de zero
 set -xe
 
@@ -91,8 +91,6 @@ else
 	exit 1
 fi )
 
-# Template RabbitMQ
-
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 helm repo add argo https://argoproj.github.io/argo-helm
 helm repo update 
@@ -102,9 +100,6 @@ kubectl apply -f "https://raw.githubusercontent.com/${REPO}/refs/heads/${BRANCH}
 
 if [[ ${APPS} ]]; then
 	for APP in "${APPS[@]}"; do
-		if [[ "${APP}" == "rabbitmq" ]]; then 
-			install_rabbitmq_operator
-		fi
 		kubectl apply -f "https://raw.githubusercontent.com/${REPO}/refs/heads/${BRANCH}/apps/${APP}/app.yaml"
 	done
 fi
