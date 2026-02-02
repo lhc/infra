@@ -1,0 +1,4 @@
+configs:
+  server:
+    service:
+      type: NodePort
