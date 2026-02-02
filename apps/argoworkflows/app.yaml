@@ -1,0 +1,28 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-workflows
+  namespace: argocd
+spec:
+  project: gitops-cd
+  sources:
+   - repoURL: https://argoproj.github.io/argo-helm
+     chart: argo-workflows
+     targetRevision: 0.47.2
+     helm:
+      valueFiles:
+        - $values/values/argoworkflows/values.yaml
+   - repoURL: https://github.com/marcpires/infra-lhc.git
+     targetRevision: feat/35-install-defaults
+     ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argoworkflows
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespade=true

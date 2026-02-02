@@ -2,7 +2,8 @@ crds:
   full: true
 
 controller:
-  workflowNamespaces: argo-workflows
+  workflowNamespaces:
+    - argo-workflows
   mertricsConfig:
     enabled: true
   ingress:
