@@ -1,0 +1,18 @@
+crds:
+  full: true
+
+controller:
+  workflowNamespaces: argo-workflows
+  mertricsConfig:
+    enabled: true
+  ingress:
+    enabled: true
+    annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    ingressClassName: traefik
+    hosts:
+      - workflows.homelab
+    tls:
+    - hosts:
+        - workflows.homelab
