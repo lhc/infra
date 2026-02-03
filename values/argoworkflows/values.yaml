@@ -1,16 +1,26 @@
 crds:
   full: true
 
+server:
+    authModes:
+      - client
+    # sso:
+    #   enabled: true
+    #   issuer: https://keycloak.homelab
+    #   clientId:
+    #     name: argo-server-sso
+    #     key:
+      
 controller:
   workflowNamespaces:
-    - argo-workflows
+    - argoworkflows
   mertricsConfig:
     enabled: true
   ingress:
     enabled: true
     annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.tls: "true"
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
     ingressClassName: traefik
     hosts:
       - workflows.homelab
