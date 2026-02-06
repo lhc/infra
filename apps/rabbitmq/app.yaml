@@ -7,9 +7,9 @@ metadata:
 spec:
   project: default
   sources:
-  - repoURL: https://github.com/marcpires/infra-lhc.git
-    targetRevision: feat/35-install-defaults
-    path: apps/rabbitmq/manifest
+    - repoURL: https://github.com/marcpires/infra-lhc.git
+      targetRevision: feat/35-install-update
+      path: apps/rabbitmq/manifest
   destination:
     server: https://kubernetes.default.svc
     namespace: rabbitmq
@@ -20,4 +20,3 @@ spec:
     syncOptions:
       - ServerSideApply=true
       - CreateNamespace=true
-
