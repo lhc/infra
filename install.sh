@@ -8,7 +8,7 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 [[ ${REPO} ]] || export REPO="marcpires/infra-lhc"
-[[ ${BRANCH} ]] || export BRANCH="feat/35-install-defaults"
+[[ ${BRANCH} ]] || export BRANCH="feat/35-install-update"
 [[ ${INSTALL_URL} ]] || export INSTALL_URL="https://raw.githubusercontent.com/${REPO}/refs/heads/${BRANCH}/install.sh"
 [[ ${ARGOCD_VERSION} ]] || export ARGOCD_VERSION="9.3.4"
 [[ ${RABBITMQ_OPERATOR_VERSION} ]] || RABBITMQ_OPERATOR_VERSION="v2.19.0" 
