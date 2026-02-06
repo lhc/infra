@@ -39,7 +39,6 @@ esac
 command -v kubectl &> /dev/null || \
 ( if [ "$OS" == "linux" ]; then
   curl -sLO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${ARCH}/kubectl"
-  verify_kubectl
   chmod +x kubectl
   mv kubectl /usr/local/bin/
   command -v kubectl &> /dev/null || ( echo "Kubectl não pode ser instalado" ; exit 1 )
