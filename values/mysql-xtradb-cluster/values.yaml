@@ -11,3 +11,5 @@
 #     operator: insecure-operator-password
 #     replication: insecure-replication-password
 # clusterSecretName: mysql-xtradb-cluster-secret
+pmm:
+  enabled: true
