@@ -1,0 +1,4 @@
+grafana:
+  enabled: false
+  external:
+    url: kube-prometheus-grafana
