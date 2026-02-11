@@ -1,16 +1,3 @@
-# secrets:
-#   ## You should be overriding these with your own or specify name for clusterSecretName.
-#   passwords:
-#     root: insecure-root-password
-#     xtrabackup: insecure-xtrabackup-password
-#     monitor: insecure-monitor-password
-#     proxyadmin: insecure-proxyadmin-password
-#     pmmserver: insecure-pmmserver-password
-#     # If pmmserverkey is set in that case pmmserver pass will not be included
-#     # pmmserverkey: set-pmmserver-api-key
-#     operator: insecure-operator-password
-#     replication: insecure-replication-password
-# clusterSecretName: mysql-xtradb-cluster-secret
 affinity:
   antiAffinityTopologyKey: "kubernetes.io/hostname"
   advanced:
