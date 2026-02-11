@@ -1,3 +1,6 @@
+encryptionSecret:
+  secretName: "devlake-encryption"
+  autoCreateSecret: true
 grafana:
   enabled: false
   external:
