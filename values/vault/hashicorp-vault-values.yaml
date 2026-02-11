@@ -3,12 +3,10 @@ server:
     enabled: true
   ingress:
     enabled: true
-    ingressClassName: traefik
+    ingressClassName: "traefik"
+    pathType: Prefix
     hosts:
       - host: hscvault.homelab
         paths:
-          - path: /
-            backend:
-              service:
-                name: hashicorp-vault
-                port: 8200
+          - /vault
+          - /api
