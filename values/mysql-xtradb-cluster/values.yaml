@@ -1,3 +1,5 @@
+enableCRValidationWebhook: true
+
 affinity:
   antiAffinityTopologyKey: "kubernetes.io/hostname"
   advanced:
@@ -8,7 +10,7 @@ affinity:
               - key: kubernetes.io/hostname
                 operator: In
                 values:
-                  - orangepi6plus
+                  - marcbook
 pmm:
   enabled: true
   readinessProbes:
