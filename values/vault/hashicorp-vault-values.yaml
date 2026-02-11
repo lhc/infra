@@ -1,0 +1,3 @@
+server:
+  dev:
+    enabled: true
