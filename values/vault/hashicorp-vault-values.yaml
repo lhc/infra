@@ -8,5 +8,5 @@ server:
     hosts:
       - host: hscvault.homelab
         paths:
-          - /vault
-          - /api
+          - /ui/*
+          - /api/*
