@@ -1,4 +1,5 @@
 encryptionSecret:
+  secret: <encryption-secret>
   secretName: "devlake-encryption"
   autoCreateSecret: true
 grafana:
