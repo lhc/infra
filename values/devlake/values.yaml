@@ -1,7 +1,9 @@
-encryptionSecret:
-  secret: ""
-  secretName: "encryption-secret"
-  autoCreateSecret: false
+imageTag: v1.0.3-beta8
+lake:
+  encryptionSecret:
+    secret: ""
+    secretName: "encryption-secret"
+    autoCreateSecret: false
 grafana:
   enabled: false
   external:
