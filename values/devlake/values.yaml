@@ -7,4 +7,4 @@ lake:
 grafana:
   enabled: false
   external:
-    url: kube-prometheus-grafana
+    url: "http://kube-prometheus-grafana.monitoring.svc.cluster.local:3000"
