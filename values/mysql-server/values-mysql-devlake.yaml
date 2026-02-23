@@ -1,9 +1,9 @@
 mysql:
   resources:
     requests:
-      memory: 2Gi
+      memory: 1Gi
     limits:
-      memory: 4Gi
+      memory: 2Gi
 
 affinity:
   antiAffinityTopologyKey: "kubernetes.io/hostname"
