@@ -7,22 +7,26 @@ if [ "$(id -u)" -ne 0 ]; then
     ( echo "Execute com sudo ou como root" ; exit 1 )
 fi
 
-[[ ${REPO} ]] || ( echo "REPO de instalação não informado" ; exit 1 )
+
 [[ ${BRANCH} ]] || export BRANCH=main
-[[ ${INSTALL_URL} ]] || ( echo "URL de instalação não informada" ; exit 1 )
+[[ ${INSTALL_URL} ]] || ( export INSTALL_URL="lhc/infra" ; exit 1 )
 [[ ${ARGOCD_VERSION} ]] || ( ARGOCD_VERSION="7.8.23" )
 
 # Identifica o sistema operacional em uso
 case "$(uname -s)" in
     Linux*) OS="linux" ;;
-    *) OS="unknown" ;;
+    Darwin*) OS="darwin" ;;
+    FreeBSD*) OS="freebsd" ;;
+    *) OS="$(uname -s)" ;;
 esac
 
 # Identifica a arquitetura em uso
 ARCH_RAW=$(uname -m)
 case "$ARCH_RAW" in
     x86_64) ARCH="amd64" ;;
-    *) ARCH="unknown" ;;
+    aarch64) ARCH="arm64" ;;
+    armb7l) ARCH="armv7" ;;
+    *) ARCH="$(uname -s)" ;;
 esac
 
 # Identifica a distribuição em uso
