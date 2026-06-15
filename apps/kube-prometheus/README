@@ -1,4 +1,0 @@
-Para obter a senha de acesso ao grafana execute:
-```
-kubectl get secret --namespace monitoring kube-prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
-```
