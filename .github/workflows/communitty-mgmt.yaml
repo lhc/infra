@@ -3,7 +3,7 @@ name: Community Management
 on:
   issues:
     types: [opened]
-  pull_request:
+  pull_request_target:
     types: [opened]
   discussion:
     types: [created]
@@ -14,7 +14,7 @@ jobs:
   welcome-new-contributors:
     name: Welcome New Contributors
     runs-on: ubuntu-latest
-    if: github.event_name == 'issues' || github.event_name == 'pull_request' || github.event_name == 'discussion'
+    if: github.event_name == 'issues' || github.event_name == 'pull_request_target' || github.event_name == 'discussion'
     permissions:
       issues: write
       pull-requests: write
@@ -46,7 +46,7 @@ jobs:
               if (context.eventName === 'issues' && issues.total_count <= 1) {
                 core.setOutput('is-first-issue', true);
               }
-              if (context.eventName === 'pull_request' && prs.total_count <= 1) {
+              if (context.eventName === 'pull_request_target' && prs.total_count <= 1) {
                 core.setOutput('is-first-pr', true);
               }
               
@@ -121,7 +121,7 @@ jobs:
   auto-tag:
     name: Auto Tag Issues and PRs
     runs-on: ubuntu-latest
-    if: github.event_name == 'issues' || github.event_name == 'pull_request'
+    if: github.event_name == 'issues' || github.event_name == 'pull_request_target'
     permissions:
       issues: write
       pull-requests: write
@@ -135,7 +135,7 @@ jobs:
           script: |
             const { owner, repo } = context.repo;
             const isIssue = context.eventName === 'issues';
-            const isPR = context.eventName === 'pull_request';
+            const isPR = context.eventName === 'pull_request_target';
             const item = isIssue ? context.payload.issue : context.payload.pull_request;
             
             const title = item.title.toLowerCase();
@@ -146,13 +146,13 @@ jobs:
             
             // Type-based labels
             if (isIssue) {
-              if (content.includes('bug') || content.includes('erro') || content.includes('quebra*')) {
+              if (content.includes('bug') || content.includes('erro') || content.includes('quebrado')) {
                 labels.push('bug');
               } else if (content.includes('funcionalidade') || content.includes('melhoria') || content.includes('improvement')) {
                 labels.push('enhancement');
               } else if (content.includes('pergunta') || content.includes('ajuda') || content.includes('how to')) {
                 labels.push('question');
-              } else if (content.includes('documentation') || content.includes('doc*') || content.includes('readme')) {
+              } else if (content.includes('documentation') || content.includes('doc') || content.includes('readme')) {
                 labels.push('documentation');
               }
             }
