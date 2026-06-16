@@ -10,7 +10,7 @@ fi
 [[ ${REPO} ]] || ( echo "REPO de instalação não informado" ; exit 1 )
 [[ ${BRANCH} ]] || export BRANCH=main
 [[ ${INSTALL_URL} ]] || ( echo "URL de instalação não informada" ; exit 1 )
-[[ ${ARGOCD_VERSION} ]] || ( ARGOCD_VERSION="7.8.23" )
+[[ ${ARGOCD_VERSION} ]] || export ARGOCD_VERSION="7.8.23"
 
 # Identifica o sistema operacional em uso
 case "$(uname -s)" in
