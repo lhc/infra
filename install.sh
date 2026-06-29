@@ -85,14 +85,12 @@ fi )
 # Identifica a necessidade de instalar o helm
 command -v helm &> /dev/null || (\
 if [ "$OS" == "linux" ]; then
-	curl -s https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+	curl -s https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-4 | bash
 	command -v helm &> /dev/null || ( echo "Helm não pode ser instalado" ; exit 1 )
 else
 	echo "Não consigo instalar helm neste sistema operacional"
 	exit 1
 fi )
-
-# Template RabbitMQ
 
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 helm repo add argo https://argoproj.github.io/argo-helm
@@ -107,17 +105,12 @@ if [[ ${APPS} ]]; then
 fi
 
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
-kubectl patch svc kube-prometheus-grafana -n monitoring -p '{"spec": {"type": "NodePort"}}'
 
 echo "\nK3S Node IP\n"
 kubectl get node -o wide | awk -v OFS='\t\t' '{print $1, $6}'
 
 echo "Portas dos serviços\n" 
-export ALERT_MANAGER_PORT=$(kubectl get svc/kube-prometheus-kube-prome-alertmanager -o jsonpath="{range .spec.ports[*]} {.name} {.nodePort}" -n monitoring)
 export ARGOCD_PORT=$(kubectl get svc/argocd-server -o jsonpath="{.spec.ports[1].name} {.spec.ports[1].nodePort}" -n argocd)
-export GRAFANA_PORT=$(kubectl get svc/kube-prometheus-grafana -o jsonpath="{.spec.ports[0].name} {.spec.ports[0].nodePort}" -n monitoring)
-export PROMETHEUS_PORT=$(kubectl get svc/kube-prometheus-kube-prome-prometheus -o jsonpath="{range .spec.ports[*]} {.name} {.nodePort}" -n monitoring)
-export RABBITMQ_PORT=$(kubectl get svc/rabbitmq -o jsonpath="{range .spec.ports[*]} {.name} {.nodePort}" -n rabbitmq)
-echo "ArgoCD: ${ARGOCD_PORT}\nGrafana: ${GRAFANA_PORT}\nPrometheus: ${PROMETHEUS_PORT}\nAlert Manager: ${ALERT_MANAGER_PORT}\nRabbitMQ: ${RABBITMQ_PORT}\n"
+echo "ArgoCD: ${ARGOCD_PORT}\n"
 
 echo "Utilize o ip do k3s e as portas para acessar os serviços do homelab"
