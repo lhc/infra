@@ -9,7 +9,7 @@ fi
 
 
 [[ ${BRANCH} ]] || export BRANCH=mob/main
-[[ ${INSTALL_URL} ]] || ( export INSTALL_URL="lhc/infra" ; exit 1 )
+[[ ${REPO} ]] || ( export REPO="lhc/infra" ; exit 1 )
 [[ ${ARGOCD_VERSION} ]] || ( ARGOCD_VERSION="7.8.23" )
 
 # Identifica o sistema operacional em uso
