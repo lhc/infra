@@ -8,7 +8,7 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 
-[[ ${BRANCH} ]] || export BRANCH=main
+[[ ${BRANCH} ]] || export BRANCH=moob/main
 [[ ${INSTALL_URL} ]] || ( export INSTALL_URL="lhc/infra" ; exit 1 )
 [[ ${ARGOCD_VERSION} ]] || ( ARGOCD_VERSION="7.8.23" )
 
