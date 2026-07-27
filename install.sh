@@ -9,8 +9,8 @@ fi
 
 
 [[ ${BRANCH} ]] || export BRANCH=mob/main
-[[ ${REPO} ]] || ( export REPO="lhc/infra" ; exit 1 )
-[[ ${ARGOCD_VERSION} ]] || ( ARGOCD_VERSION="7.8.23" )
+[[ ${REPO} ]] || export REPO="lhc/infra" ; exit 1
+[[ ${ARGOCD_VERSION} ]] || ARGOCD_VERSION="7.8.23"
 
 # Identifica o sistema operacional em uso
 case "$(uname -s)" in
