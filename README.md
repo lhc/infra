@@ -1,4 +1,4 @@
-# LHC Kubernetes Homelab Infra
+# LHC Homelab Infra
 
 Esse é um projeto aberto e colaborativo e têm como objetivo, prover um ambiente para criação de laboratórios, utilizando Kubernetes com a utilização da IaC e GitOps
 para gerenciar toda a sua configuração.
